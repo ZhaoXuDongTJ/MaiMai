@@ -1,0 +1,171 @@
+package com.maimai.zz.maimai;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+
+import org.litepal.LitePal;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class MainActivity extends AppCompatActivity {
+    //用户 个人书本上传
+    // 控件注册
+    private ImageButton openCamera;
+    private ImageButton ScanNode;
+    private ImageButton cancelIt;
+    private ImageButton publishIt;
+
+    private ImageView imageOfBook;
+    private EditText edit_scan;
+    //  启动照相机
+    public static final int TAKE_PHOTO = 1;
+    public static final int REQUEST_CODE = 2;
+    private Uri imageUri;
+    // 上传云端 确认码
+    public static int SUCCESD_PICTURE = 0;
+    public static int SUCCESD_CODE = 0;
+    //sqlite
+    private SqlUserBookContribution dbHelper;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+//按钮
+        openCamera = (ImageButton) findViewById(R.id.openCamera);
+        ScanNode = (ImageButton) findViewById(R.id.ScanNode);
+        cancelIt = (ImageButton) findViewById(R.id.cancelIt);
+        publishIt = (ImageButton) findViewById(R.id.publishIt);
+// 图片 二维码输入框
+        imageOfBook = (ImageView) findViewById(R.id.imageOfBook);
+        edit_scan = (EditText) findViewById(R.id.edit_scan);
+//
+        dbHelper = new SqlUserBookContribution(this,"UserBookContribution.db",null,1);
+
+        //拍照
+        openCamera.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                //File 存储
+                File outputImage = new File(getExternalCacheDir(),"output_image.jpg");
+                try {
+                    if(outputImage.exists()){
+                        outputImage.delete();
+                    }
+                    outputImage.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(Build.VERSION.SDK_INT>=23){
+                    imageUri = FileProvider.getUriForFile(MainActivity.this,"com.example.cameraalbumtest.fileprovider",outputImage);
+                }else {
+                    imageUri = Uri.fromFile(outputImage);
+                }
+                // 启动相机
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+                startActivityForResult(intent,TAKE_PHOTO);
+            }
+        });
+        //打开二维码扫描器
+        ZXingLibrary.initDisplayOpinion(this);
+        ScanNode.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+//                startActivity(new Intent(MainActivity.this, CaptureActivity.class));
+            }
+        });
+        //
+        cancelIt.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        //
+//        publishIt.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        //  sqlite   以及 发送 云端
+        publishIt.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                if(SUCCESD_PICTURE==0 || SUCCESD_CODE==0){
+                    Toast.makeText(MainActivity.this, "请拍照书的封面和扫描书后面的条形码", Toast.LENGTH_LONG).show();
+                }else if(SUCCESD_PICTURE==1 && SUCCESD_CODE==1){
+                    // 发送服务器
+                    //sqlite 存储
+                    Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_LONG).show();
+                    LitePal.getDatabase();
+                }
+            }
+        });
+}
+
+// 显示图片 e二维码
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case TAKE_PHOTO:
+                Bitmap bitmap = null;
+                try {
+                    bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                imageOfBook.setImageBitmap(bitmap);
+                SUCCESD_PICTURE =1;
+                break;
+            case REQUEST_CODE:
+                if (null != data) {
+                    Bundle bundle = data.getExtras();
+                    if (bundle == null) {
+                        return;
+                    }
+                    if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                        String result = bundle.getString(CodeUtils.RESULT_STRING);
+                        edit_scan.setText(result);
+                        SUCCESD_CODE =1;
+                        Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                    } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                        Toast.makeText(MainActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+    }
+
+
+
+}

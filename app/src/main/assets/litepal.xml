@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="UserBook" />
+    <version value="2" />
+
+    <list>
+        <mapping class="com.maimai.zz.maimai.litepals.UserInfo"></mapping>
+        <mapping class="com.maimai.zz.maimai.litepals.BookLibrary"></mapping>
+        <mapping class="com.maimai.zz.maimai.litepals.wifiInfo"></mapping>
+    </list>
+</litepal>

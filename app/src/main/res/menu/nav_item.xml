@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/mainFunc">
+        <item
+            android:icon="@drawable/book"
+            android:title="@string/book"
+            android:id="@+id/book"/>
+        <item
+            android:icon="@drawable/wifi"
+            android:title="@string/wifi"
+            android:id="@+id/wifi"/>
+        <item
+            android:icon="@drawable/personinfo"
+            android:title="@string/person_info"
+            android:id="@+id/personInfo"/>
+    </group>
+    <group>
+        <item
+            android:icon="@drawable/set"
+            android:title="@string/set"
+            android:id="@+id/set"/>
+        <item
+            android:icon="@drawable/about"
+            android:title="@string/about"
+            android:id="@+id/about"/>
+    </group>
+</menu>

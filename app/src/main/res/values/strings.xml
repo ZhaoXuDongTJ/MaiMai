@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">MaiMai</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_StudentID">学号</string>
+    <string name="prompt_password">密码(信息门户密码)</string>
+    <string name="action_sign_in">登入信息门户</string>
+    <string name="prompt_realName">实名注册</string>
+    <string name="test_accounts">测试账号20162434</string>
+    <string name="test_password">测试密码000000</string>
+    <string name="test_login_StudentID">20162434</string>
+    <string name="test_login_password">000000</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    //丽姐
+    <string name="title_activity_context">ContextActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="name">王小彪</string>
+    <string name="info">其他信息</string>
+
+    <string name="book">书</string>
+    <string name="wifi">WIFI公社</string>
+    <string name="person_info">个人信息</string>
+    <string name="set">设置</string>
+    <string name="about">关于</string>
+
+    <string name="scan_code">打开相机</string>
+
+    <string name="member">公社成员:0</string>
+    <string name="energy">公社能量:0</string>
+    <string name="contribute">我已贡献:0</string>
+    <string name="get">我已回报:0</string>
+
+    <string name="join">加入公社</string>
+    <string name="isMember">您已是公社成员！</string>
+    <string name="net_speed">网速：0</string>
+    <string name="net_power">强度：0</string>
+
+    <string name="save_book">节约书本:0</string>
+    <string name="contribute_book">贡献书本:0</string>
+    <string name="send_object">待发货</string>
+    <string name="receiver_object">&#160;&#160;&#160;待收货</string>
+    <string name="text_contribute">&#160;&#160;&#160;&#160;教材模板贡献</string>
+
+
+
+</resources>

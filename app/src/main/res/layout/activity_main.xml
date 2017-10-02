@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.maimai.zz.maimai.MainActivity"
+    android:weightSum="1"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/openCamera"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <ImageView
+        android:id="@+id/imageOfBook"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.73"
+        android:src="@drawable/loadingpicture"/>
+
+    <ImageButton
+        android:id="@+id/ScanNode"
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/scan_code" />
+
+    <EditText
+        android:id="@+id/edit_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_weight="0.19" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <ImageButton
+            android:id="@+id/cancelIt"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.23"
+            app:srcCompat="@drawable/cancel_book" />
+
+        <ImageButton
+            android:id="@+id/publishIt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.78"
+            app:srcCompat="@drawable/publish_book" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
