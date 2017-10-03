@@ -45,7 +45,9 @@ public class LoginActivity extends AppCompatActivity{
         // bomb 后端 初始化
         Bmob.initialize(this, "7a9a1ebc139655e8ca2c74b2b7c68b25");
 
-
+        init();
+        editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+        pref = getSharedPreferences("data",MODE_PRIVATE);
         //
         if(pref.getBoolean("State",false) == false){
             editor.putString("StudentID","20162434");
@@ -58,7 +60,7 @@ public class LoginActivity extends AppCompatActivity{
             startActivity(intent);
             finish();
         }
-        init();
+
 
         mStudent_sign.setOnClickListener(new View.OnClickListener(){
 
@@ -133,8 +135,7 @@ public class LoginActivity extends AppCompatActivity{
         testRequestResponse = (TextView)findViewById(R.id.testRequestResponse);
 
         // add test  data
-        editor = getSharedPreferences("data",MODE_PRIVATE).edit();
-        pref = getSharedPreferences("data",MODE_PRIVATE);
+
     }
 
 
