@@ -7,11 +7,11 @@ import org.litepal.crud.DataSupport;
  */
 
 public class UserInfo extends DataSupport {
-//基本信息
+    //基本信息
     private String userName;
     private String studentID;
     private String password;
-// 地址 宿舍楼号 宿舍号
+   // 地址 宿舍楼号 宿舍号
     private Integer blockNumber;
     private Integer roomNumber;
 // 流量 贡献 回报

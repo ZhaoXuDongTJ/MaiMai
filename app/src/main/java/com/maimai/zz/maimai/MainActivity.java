@@ -28,8 +28,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
 
 public class MainActivity extends AppCompatActivity {
     //用户 个人书本上传
@@ -58,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
     public SharedPreferences pref;
     //Bmob
     File outputImage;
+    File BombFileImg;
+
+    String realFilePathUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,35 +130,13 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "请拍照书的封面和扫描书后面的条形码", Toast.LENGTH_LONG).show();
                 }else if(SUCCESD_PICTURE==1 && SUCCESD_CODE==1){
                     // 发送服务器
-
-                    //litepal 存储
-
                     pref = getSharedPreferences("data",MODE_PRIVATE);
-                  //  LitePal.getDatabase();
-//                    Connector.getDatabase();
-//                    imgUtils = new ImgUtils();
-//                    imgUtils.connectSP(pref);
-//                    imgUtils.toLite(liteImageOfBook,liteScanNodeBook);
-
-                    BmobFile bmobFile = new BmobFile(outputImage);
-
 
                     BookLibBomb bookLibBomb = new BookLibBomb();
-                    bookLibBomb.setStudentID(pref.getString("StudentID",""));
-                    bookLibBomb.setScanCode(liteScanNodeBook);
-                //bug
-                   bookLibBomb.setCover(bmobFile);
-                    bookLibBomb.save(new SaveListener<String>() {
-                        @Override
-                        public void done(String s, BmobException e) {
-                            if(e==null){
-                                Toast.makeText(MainActivity.this,"创建数据成功：" + s,Toast.LENGTH_SHORT).show();
-                            }else{
-                                Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
-                            }
-                        }
-                    });
-                    Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_LONG).show();
+                    final BmobFile bmobFile = new BmobFile(new File(realFilePathUtil));
+                    
+
+                    Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -177,6 +156,26 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 imageOfBook.setImageBitmap(bitmap);
+//   1
+//                pref = getSharedPreferences("data",MODE_PRIVATE);
+//                String ii = pref.getString("StudentID","")+"book";
+//                try {
+//                    BombFileImg = ImgUtils.saveFile(bitmap,ii);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//    2
+                try {
+                    realFilePathUtil = ImgUtils.saveBitmap(bitmap);
+                    Toast.makeText(MainActivity.this,"创建地址成功：" + realFilePathUtil,Toast.LENGTH_SHORT).show();
+                    Log.i("bmob","创建地址成功："+realFilePathUtil+"");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+//    3
+            //    realFilePathUtil = RealFilePathUtil.getPath(MainActivity.this,imageUri);
+
+
                 SUCCESD_PICTURE =1;
                 break;
             case REQUEST_CODE:
