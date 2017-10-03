@@ -10,22 +10,26 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.maimai.zz.maimai.bombs.BookLibBomb;
 import com.maimai.zz.maimai.utils.ImgUtils;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
-import org.litepal.tablemanager.Connector;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 public class MainActivity extends AppCompatActivity {
     //用户 个人书本上传
@@ -52,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     public ImgUtils imgUtils;
     // 共享 存储
     public SharedPreferences pref;
+    //Bmob
+    File outputImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //File 存储
-                File outputImage = new File(getExternalCacheDir(),"output_image.jpg");
+                outputImage = new File(getExternalCacheDir(),"output_image.jpg");
                 try {
                     if(outputImage.exists()){
                         outputImage.delete();
@@ -128,12 +134,31 @@ public class MainActivity extends AppCompatActivity {
 
                     pref = getSharedPreferences("data",MODE_PRIVATE);
                   //  LitePal.getDatabase();
-                    Connector.getDatabase();
-                    imgUtils = new ImgUtils();
-                    imgUtils.connectSP(pref);
-                    imgUtils.toLite(liteImageOfBook,liteScanNodeBook);
+//                    Connector.getDatabase();
+//                    imgUtils = new ImgUtils();
+//                    imgUtils.connectSP(pref);
+//                    imgUtils.toLite(liteImageOfBook,liteScanNodeBook);
 
+                    BmobFile bmobFile = new BmobFile(outputImage);
+
+
+                    BookLibBomb bookLibBomb = new BookLibBomb();
+                    bookLibBomb.setStudentID(pref.getString("StudentID",""));
+                    bookLibBomb.setScanCode(liteScanNodeBook);
+                //bug
+                   bookLibBomb.setCover(bmobFile);
+                    bookLibBomb.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String s, BmobException e) {
+                            if(e==null){
+                                Toast.makeText(MainActivity.this,"创建数据成功：" + s,Toast.LENGTH_SHORT).show();
+                            }else{
+                                Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                            }
+                        }
+                    });
                     Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_LONG).show();
+
                 }
             }
         });

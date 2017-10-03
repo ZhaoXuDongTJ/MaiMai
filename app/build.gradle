@@ -39,7 +39,8 @@ dependencies {
     compile 'cn.bmob.android:http-legacy:1.0'
     //丽姐
     compile 'com.jude:rollviewpager:1.4.6'
-    //wifi
+    //bomb
+    compile 'cn.bmob.android:bmob-sdk:3.5.0'
 
     testCompile 'junit:junit:4.12'
 }

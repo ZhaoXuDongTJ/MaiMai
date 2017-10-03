@@ -18,6 +18,7 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import java.io.IOException;
 
+import cn.bmob.v3.Bmob;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -47,10 +48,13 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // bomb 后端 初始化
+        Bmob.initialize(this, "7a9a1ebc139655e8ca2c74b2b7c68b25");
+
         //显示内存大小
         int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024/1024);
         Log.d("TAG", "Max memory is " + maxMemory + "KB");
-        Toast.makeText(LoginActivity.this, "测试:最大内存可用"+maxMemory+"m" , Toast.LENGTH_LONG).show();
+      //  Toast.makeText(LoginActivity.this, "测试:最大内存可用"+maxMemory+"m" , Toast.LENGTH_LONG).show();
 
         // add test  data
         editor = getSharedPreferences("data",MODE_PRIVATE).edit();

@@ -49,5 +49,26 @@ public class ImgUtils {
         return BitmapFactory.decodeByteArray(images,0,images.length);
     }
 
+    public static Byte[] parseByte(byte[] bytes){
+        Byte[] It = new Byte[bytes.length];
+
+        int i=0;
+        for(byte b  : bytes){
+            It[i++] = b;
+        }
+
+        return It;
+    }
+
+    public static byte[] parsebyte(Byte[] bytes){
+        byte[] It = new byte[bytes.length];
+
+        int i=0;
+        for(Byte b  : bytes){
+            It[i++] = b;
+        }
+
+        return It;
+    }
 
 }
