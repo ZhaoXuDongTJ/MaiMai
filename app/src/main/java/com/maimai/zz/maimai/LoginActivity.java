@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
         // bomb 后端 初始化
         Bmob.initialize(this, "7a9a1ebc139655e8ca2c74b2b7c68b25");
-        
+
         // add test  data
         editor = getSharedPreferences("data",MODE_PRIVATE).edit();
         pref = getSharedPreferences("data",MODE_PRIVATE);
