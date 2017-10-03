@@ -28,6 +28,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadFileListener;
 
 public class MainActivity extends AppCompatActivity {
     //用户 个人书本上传
@@ -134,7 +137,33 @@ public class MainActivity extends AppCompatActivity {
 
                     BookLibBomb bookLibBomb = new BookLibBomb();
                     final BmobFile bmobFile = new BmobFile(new File(realFilePathUtil));
-                    
+                    bookLibBomb.setStudentID(pref.getString("StudentID",""));
+                    bookLibBomb.setScanCode(liteScanNodeBook);
+                    bookLibBomb.setCover(bmobFile);
+
+                    bmobFile.upload(new UploadFileListener() {
+
+                        @Override
+                        public void done(BmobException e) {
+                            if(e==null){
+                                Toast.makeText(MainActivity.this, "OK:"+bmobFile.getFileUrl(), Toast.LENGTH_SHORT).show();
+                                BookLibBomb bookLibBomb = new BookLibBomb();
+                                bookLibBomb.setStudentID(pref.getString("StudentID",""));
+                                bookLibBomb.setScanCode(liteScanNodeBook);
+                                bookLibBomb.setCover(bmobFile);
+                                bookLibBomb.save(new SaveListener<String>() {
+                                    @Override
+                                    public void done(String s, BmobException e) {
+
+                                    }
+                                });
+                            }else {
+                                Toast.makeText(MainActivity.this, "失败", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
 
                     Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
 
