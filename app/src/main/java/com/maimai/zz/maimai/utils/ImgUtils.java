@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 
-import com.maimai.zz.maimai.litepals.BookLibrary;
+
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -29,19 +29,7 @@ public class ImgUtils {
         this.pref = pref;
     }
 
-    // 存储到数据库
-    public BookLibrary toLite(Bitmap bitmap, String edit_scan){
-        // lipepal  对象
-        BookLibrary bookLibrary;
-        bookLibrary = new BookLibrary();
-        bookLibrary.setStudentID(pref.getString("StudentID",""));
-        bookLibrary.setScanCode(edit_scan);
-        bookLibrary.setCover(toByte(bitmap));
-        bookLibrary.save();
 
-        return bookLibrary;
-
-    }
 
 
 
