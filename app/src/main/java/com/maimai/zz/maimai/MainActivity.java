@@ -137,10 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
                     BookLibBomb bookLibBomb = new BookLibBomb();
                     final BmobFile bmobFile = new BmobFile(new File(realFilePathUtil));
-                    bookLibBomb.setStudentID(pref.getString("StudentID",""));
-                    bookLibBomb.setScanCode(liteScanNodeBook);
-                    bookLibBomb.setCover(bmobFile);
-
                     bmobFile.upload(new UploadFileListener() {
 
                         @Override
@@ -189,15 +185,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 imageOfBook.setImageBitmap(bitmap);
-//   1
-//                pref = getSharedPreferences("data",MODE_PRIVATE);
-//                String ii = pref.getString("StudentID","")+"book";
-//                try {
-//                    BombFileImg = ImgUtils.saveFile(bitmap,ii);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//    2
+
                 try {
                     realFilePathUtil = ImgUtils.saveBitmap(bitmap);
                     Toast.makeText(MainActivity.this,"创建地址成功：" + realFilePathUtil,Toast.LENGTH_SHORT).show();
@@ -205,9 +193,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-//    3
-            //    realFilePathUtil = RealFilePathUtil.getPath(MainActivity.this,imageUri);
-
 
                 SUCCESD_PICTURE =1;
                 break;
