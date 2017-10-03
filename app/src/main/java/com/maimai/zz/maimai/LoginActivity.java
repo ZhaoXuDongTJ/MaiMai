@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity{
     private EditText mStudentIdView;
     private EditText mPasswordView;
     private Button mStudent_sign;
+    //
     private TextView testRequestResponse;
     //字符串
     private String username;
@@ -46,8 +47,6 @@ public class LoginActivity extends AppCompatActivity{
         Bmob.initialize(this, "7a9a1ebc139655e8ca2c74b2b7c68b25");
 
         init();
-        editor = getSharedPreferences("data",MODE_PRIVATE).edit();
-        pref = getSharedPreferences("data",MODE_PRIVATE);
         //
         if(pref.getBoolean("State",false) == false){
             editor.putString("StudentID","20162434");
@@ -66,24 +65,28 @@ public class LoginActivity extends AppCompatActivity{
 
             @Override
             public void onClick(View view) {
-                username = mStudentIdView.getText().toString();
-                password = mPasswordView.getText().toString();
+
                 String sql_StudentID = pref.getString("StudentID","");
                 String sql_password = pref.getString("password","");
-                if(username.isEmpty()||password.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "学号或密码不可以空", Toast.LENGTH_LONG).show();
-                }else if(username.length() == 8){
-                    if(username.equals(sql_StudentID) && password.equals(sql_password)){
-                        Toast.makeText(LoginActivity.this, "认证成功", Toast.LENGTH_LONG).show();
-                        editor.putBoolean("State",true);
-                        editor.apply();
-                        finish();
-                        Intent intent = new Intent(LoginActivity.this,ContextActivity.class);
-                        startActivity(intent);
-                    }else {
-                        Toast.makeText(LoginActivity.this, "认证失败,请检查账号密码", Toast.LENGTH_LONG).show();
-                    }
-                }
+
+//                if(username.isEmpty()||password.isEmpty()){
+//                    Toast.makeText(LoginActivity.this, "学号或密码不可以空", Toast.LENGTH_LONG).show();
+//                }else if(username.length() == 8){
+//                    if(username.equals(sql_StudentID) && password.equals(sql_password)){
+//                        Toast.makeText(LoginActivity.this, "认证成功", Toast.LENGTH_LONG).show();
+//                        editor.putBoolean("State",true);
+//                        editor.apply();
+//                        finish();
+//                        Intent intent = new Intent(LoginActivity.this,ContextActivity.class);
+//                        startActivity(intent);
+//                    }else {
+//                        Toast.makeText(LoginActivity.this, "认证失败,请检查账号密码", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+
+                Intent intent = new Intent(LoginActivity.this,ContextActivity.class);
+                startActivity(intent);
+
 
             }
         });
@@ -129,13 +132,13 @@ public class LoginActivity extends AppCompatActivity{
 
     public void init(){
         // Set up the login form.
-        mStudentIdView =(EditText) findViewById(R.id.studentId);
-        mPasswordView =(EditText) findViewById(R.id.password);
+
         mStudent_sign =(Button) findViewById(R.id.student_sign);
-        testRequestResponse = (TextView)findViewById(R.id.testRequestResponse);
+
 
         // add test  data
-
+        editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+        pref = getSharedPreferences("data",MODE_PRIVATE);
     }
 
 
