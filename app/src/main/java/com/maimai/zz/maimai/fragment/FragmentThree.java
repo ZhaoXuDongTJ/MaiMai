@@ -40,9 +40,6 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
         floatBtn.setOnClickListener(this);
 
 
-
-
-
         //跳转 页面的 增加贡献模板
         contribute = (Button) view.findViewById(R.id.contribute);
         contribute.setOnClickListener(new View.OnClickListener(){

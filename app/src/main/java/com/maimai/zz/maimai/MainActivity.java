@@ -1,6 +1,7 @@
 package com.maimai.zz.maimai;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,11 +16,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.maimai.zz.maimai.utils.ImgUtils;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
-import org.litepal.LitePal;
+import org.litepal.tablemanager.Connector;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,19 +46,26 @@ public class MainActivity extends AppCompatActivity {
     public static int SUCCESD_CODE = 0;
     //sqlite
     private SqlUserBookContribution dbHelper;
+    // 存储 lipepal
+    private Bitmap liteImageOfBook;
+    private String liteScanNodeBook;
+    public ImgUtils imgUtils;
+    // 共享 存储
+    public SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//按钮
+        //按钮
         openCamera = (ImageButton) findViewById(R.id.openCamera);
         ScanNode = (ImageButton) findViewById(R.id.ScanNode);
         cancelIt = (ImageButton) findViewById(R.id.cancelIt);
         publishIt = (ImageButton) findViewById(R.id.publishIt);
-// 图片 二维码输入框
+        // 图片 二维码输入框
         imageOfBook = (ImageView) findViewById(R.id.imageOfBook);
         edit_scan = (EditText) findViewById(R.id.edit_scan);
-//
+        //
         dbHelper = new SqlUserBookContribution(this,"UserBookContribution.db",null,1);
 
         //拍照
@@ -74,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if(Build.VERSION.SDK_INT>=23){
+                if(Build.VERSION.SDK_INT>=24){
                     imageUri = FileProvider.getUriForFile(MainActivity.this,"com.example.cameraalbumtest.fileprovider",outputImage);
                 }else {
                     imageUri = Uri.fromFile(outputImage);
@@ -104,15 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        //
-//        publishIt.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
         //  sqlite   以及 发送 云端
         publishIt.setOnClickListener(new View.OnClickListener(){
 
@@ -122,9 +123,17 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "请拍照书的封面和扫描书后面的条形码", Toast.LENGTH_LONG).show();
                 }else if(SUCCESD_PICTURE==1 && SUCCESD_CODE==1){
                     // 发送服务器
-                    //sqlite 存储
+
+                    //litepal 存储
+
+                    pref = getSharedPreferences("data",MODE_PRIVATE);
+                  //  LitePal.getDatabase();
+                    Connector.getDatabase();
+                    imgUtils = new ImgUtils();
+                    imgUtils.connectSP(pref);
+                    imgUtils.toLite(liteImageOfBook,liteScanNodeBook);
+
                     Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_LONG).show();
-                    LitePal.getDatabase();
                 }
             }
         });
@@ -138,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap bitmap = null;
                 try {
                     bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                    liteImageOfBook = bitmap;
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -154,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                         String result = bundle.getString(CodeUtils.RESULT_STRING);
                         edit_scan.setText(result);
                         SUCCESD_CODE =1;
-                        Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                        liteScanNodeBook = result;
                     } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                         Toast.makeText(MainActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
                     }

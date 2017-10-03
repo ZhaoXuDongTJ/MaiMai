@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,7 +47,10 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //预加载类
+        //显示内存大小
+        int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024/1024);
+        Log.d("TAG", "Max memory is " + maxMemory + "KB");
+        Toast.makeText(LoginActivity.this, "测试:最大内存可用"+maxMemory+"m" , Toast.LENGTH_LONG).show();
 
         // add test  data
         editor = getSharedPreferences("data",MODE_PRIVATE).edit();

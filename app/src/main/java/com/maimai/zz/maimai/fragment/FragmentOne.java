@@ -1,5 +1,6 @@
 package com.maimai.zz.maimai.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.maimai.zz.maimai.R;
+import com.maimai.zz.maimai.litepalTestActivity;
 
 /**
  * Created by 87784 on 2017/10/2.
@@ -72,10 +74,11 @@ public class FragmentOne extends Fragment implements BaseFragment,View.OnClickLi
 
                 break;
             case R.id.imgBntTwo:
-
+                // 点击 查看 专业书籍
+                startActivity(new Intent(getContext(),litepalTestActivity.class));
                 break;
             case R.id.imgBntThree:
-
+                // 全站 书籍
                 break;
         }
     }

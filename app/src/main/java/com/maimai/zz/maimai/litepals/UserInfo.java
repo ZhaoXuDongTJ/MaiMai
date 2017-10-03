@@ -1,10 +1,12 @@
 package com.maimai.zz.maimai.litepals;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by 92198 on 2017/10/2.
  */
 
-public class UserInfo {
+public class UserInfo extends DataSupport {
 //基本信息
     private String userName;
     private String studentID;

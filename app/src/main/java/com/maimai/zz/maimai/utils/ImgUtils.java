@@ -1,7 +1,10 @@
 package com.maimai.zz.maimai.utils;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.maimai.zz.maimai.litepals.BookLibrary;
 
 import java.io.ByteArrayOutputStream;
 
@@ -10,6 +13,31 @@ import java.io.ByteArrayOutputStream;
  */
 
 public class ImgUtils {
+
+    // 共享 存储    获得 学号
+    public SharedPreferences pref;
+
+    // 连接 共享 存储
+    public  void connectSP(SharedPreferences pref){
+        this.pref = pref;
+    }
+
+    // 存储到数据库
+    public BookLibrary toLite(Bitmap bitmap, String edit_scan){
+        // lipepal  对象
+        BookLibrary bookLibrary;
+        bookLibrary = new BookLibrary();
+        bookLibrary.setStudentID(pref.getString("StudentID",""));
+        bookLibrary.setScanCode(edit_scan);
+        bookLibrary.setCover(toByte(bitmap));
+        bookLibrary.save();
+
+        return bookLibrary;
+
+    }
+
+
+
     //  图片 转化 字节
     public static byte[] toByte(Bitmap bitmap){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -20,5 +48,6 @@ public class ImgUtils {
     public static Bitmap toImg(byte[] images){
         return BitmapFactory.decodeByteArray(images,0,images.length);
     }
+
 
 }

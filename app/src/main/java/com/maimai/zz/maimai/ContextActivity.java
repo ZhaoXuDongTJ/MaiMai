@@ -172,9 +172,14 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
                 actionBar.setTitle("个人信息");
                 break;
             case R.id.set:
-
+                // 需要修改   做一个 新界面   To:诗瑶
+                Intent intent = new Intent(ContextActivity.this,MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.about:
+                // 需要修改   做一个 新界面   To:诗瑶
+                Intent intent2 = new Intent(ContextActivity.this,MainActivity.class);
+                startActivity(intent2);
                 break;
         }
         drawerLayout.closeDrawers();

@@ -56,13 +56,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".litepal_testActivity">
+        <activity android:name=".litepalTestActivity">
 
         </activity>
 
         <activity
-        android:name=".ContextActivity"
-        android:label="@string/title_activity_context">
+            android:name=".ContextActivity"
+            android:label="@string/title_activity_context">
 
         </activity>
 

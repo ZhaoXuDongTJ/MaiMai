@@ -1,10 +1,12 @@
 package com.maimai.zz.maimai.litepals;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by 92198 on 2017/10/3.
  */
 
-public class wifiInfo {
+public class wifiInfo extends DataSupport {
     private Integer member;
     private Integer energy;
 
