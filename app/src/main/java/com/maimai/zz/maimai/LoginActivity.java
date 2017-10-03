@@ -15,12 +15,7 @@ import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
-import java.io.IOException;
-
 import cn.bmob.v3.Bmob;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * A login screen that offers login via studentId/password.
@@ -50,9 +45,7 @@ public class LoginActivity extends AppCompatActivity{
         // bomb 后端 初始化
         Bmob.initialize(this, "7a9a1ebc139655e8ca2c74b2b7c68b25");
 
-        // add test  data
-        editor = getSharedPreferences("data",MODE_PRIVATE).edit();
-        pref = getSharedPreferences("data",MODE_PRIVATE);
+
         //
         if(pref.getBoolean("State",false) == false){
             editor.putString("StudentID","20162434");
@@ -105,42 +98,6 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
 
-
-
-
-
-    }
-    public void sendRequestWithHttpURLConnection(){
-        //
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-                    OkHttpClient client = new OkHttpClient();
-                    Request request = new Request.Builder()
-                            .url("https://www.baidu.com/")
-                            .build();
-                    Response response = client.newCall(request).execute();
-                    //  需要修改  修改 获取的内容
-                    String responseData = response.headers().toString();
-                    showResponse(responseData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
-    public void showResponse(final String response) {
-        new Thread(new java.lang.Runnable() {
-            @Override
-            public void run() {
-                // 可以 写数据库 sqlite 方便下次 验证 直接上账号
-                testRequestResponse = (TextView)findViewById(R.id.testRequestResponse);
-                testRequestResponse.setText(response);
-            }
-        }).start();
     }
 
 
@@ -174,6 +131,10 @@ public class LoginActivity extends AppCompatActivity{
         mPasswordView =(EditText) findViewById(R.id.password);
         mStudent_sign =(Button) findViewById(R.id.student_sign);
         testRequestResponse = (TextView)findViewById(R.id.testRequestResponse);
+
+        // add test  data
+        editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+        pref = getSharedPreferences("data",MODE_PRIVATE);
     }
 
 
