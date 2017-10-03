@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity{
         // add test  data
         editor = getSharedPreferences("data",MODE_PRIVATE).edit();
         pref = getSharedPreferences("data",MODE_PRIVATE);
+        //
         if(pref.getBoolean("State",false) == false){
             editor.putString("StudentID","20162434");
             editor.putString("password","000000");
@@ -70,11 +71,7 @@ public class LoginActivity extends AppCompatActivity{
             startActivity(intent);
             finish();
         }
-        // Set up the login form.
-        mStudentIdView =(EditText) findViewById(R.id.studentId);
-        mPasswordView =(EditText) findViewById(R.id.password);
-        mStudent_sign =(Button) findViewById(R.id.student_sign);
-        testRequestResponse = (TextView)findViewById(R.id.testRequestResponse);
+        init();
 
         mStudent_sign.setOnClickListener(new View.OnClickListener(){
 
@@ -175,6 +172,17 @@ public class LoginActivity extends AppCompatActivity{
                 break;
         }
     }
+
+
+    public void init(){
+        // Set up the login form.
+        mStudentIdView =(EditText) findViewById(R.id.studentId);
+        mPasswordView =(EditText) findViewById(R.id.password);
+        mStudent_sign =(Button) findViewById(R.id.student_sign);
+        testRequestResponse = (TextView)findViewById(R.id.testRequestResponse);
+    }
+
+
 }
 
 
