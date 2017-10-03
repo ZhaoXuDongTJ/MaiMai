@@ -154,7 +154,11 @@ public class MainActivity extends AppCompatActivity {
                                 bookLibBomb.save(new SaveListener<String>() {
                                     @Override
                                     public void done(String s, BmobException e) {
-
+                                        if(e==null){
+                                            Toast.makeText(MainActivity.this,"创建数据成功：" + s,Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                                        }
                                     }
                                 });
                             }else {
