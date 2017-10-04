@@ -40,6 +40,9 @@ dependencies {
     compile 'com.jude:rollviewpager:1.4.6'
     //bomb
     //   compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    // card
+    compile 'me.yuqirong:cardswipelayout:1.0.0'
+
     testCompile 'junit:junit:4.12'
     compile files('libs/jsoup-1.9.2.jar')
 }

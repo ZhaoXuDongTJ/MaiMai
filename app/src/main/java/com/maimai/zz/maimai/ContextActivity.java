@@ -17,12 +17,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.maimai.zz.maimai.bombs.BmobObjectID;
+import com.maimai.zz.maimai.bombs.VersionNumber;
 import com.maimai.zz.maimai.fragment.FragmentOne;
 import com.maimai.zz.maimai.fragment.FragmentThree;
 import com.maimai.zz.maimai.fragment.FragmentTwo;
+import com.maimai.zz.maimai.utils.AppConfig;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 
 public class ContextActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -97,6 +104,8 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
                 drawerLayout.openDrawer(navigationView,true);
             }
         });
+
+        CheckVersionNumber();
 
     }
 
@@ -211,7 +220,18 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
 
     //  检查 版本
     protected void CheckVersionNumber(){
-        
+        BmobQuery<VersionNumber> versionNumberBmobQuery = new BmobQuery<VersionNumber>();
+        versionNumberBmobQuery.getObject(BmobObjectID.VerSionNumber, new QueryListener<VersionNumber>() {
+            @Override
+            public void done(VersionNumber versionNumber, BmobException e) {
+                if(e==null){
+                    String string =  versionNumber.getVersionNumber();
+                    if(!AppConfig.versionMai.equals(string)){
+                        Toast.makeText(ContextActivity.this,"发现新版本"+ string,Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
 
 
