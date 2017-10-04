@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.maimai.zz.maimai.bombs.BookLibBomb;
+import com.maimai.zz.maimai.bombs.StudentInfo;
 import com.maimai.zz.maimai.utils.ImgUtils;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
@@ -30,6 +31,7 @@ import java.io.IOException;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     // 发送服务器
                     pref = getSharedPreferences("data",MODE_PRIVATE);
 
-                    BookLibBomb bookLibBomb = new BookLibBomb();
+
                     final BmobFile bmobFile = new BmobFile(new File(realFilePathUtil));
                     bmobFile.upload(new UploadFileListener() {
 
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                             if(e==null){
                                 Toast.makeText(MainActivity.this, "OK:"+bmobFile.getFileUrl(), Toast.LENGTH_SHORT).show();
                                 BookLibBomb bookLibBomb = new BookLibBomb();
-                                bookLibBomb.setStudentID(pref.getString("StudentID",""));
+                                bookLibBomb.setStudentID(pref.getString("id",""));
                                 bookLibBomb.setScanCode(liteScanNodeBook);
                                 bookLibBomb.setCover(bmobFile);
                                 bookLibBomb.save(new SaveListener<String>() {
@@ -152,6 +154,25 @@ public class MainActivity extends AppCompatActivity {
                                     public void done(String s, BmobException e) {
                                         if(e==null){
                                             Toast.makeText(MainActivity.this,"创建数据成功：" + s,Toast.LENGTH_SHORT).show();
+
+                                            // 添加贡献值
+                                            StudentInfo studentInfo = new StudentInfo();
+                                            studentInfo.increment("mouldContribute");
+
+                                            Toast.makeText(MainActivity.this,"ObjectID"+pref.getString("ObjectID",""),Toast.LENGTH_SHORT).show();
+
+                                            studentInfo.update(pref.getString("ObjectID",""),new UpdateListener() {
+                                                @Override
+                                                public void done(BmobException e) {
+                                                    if(e==null){
+                                                        Log.i("bmob","更新成功");
+                                                    }else{
+                                                        Log.i("bmob","更新失败："+e.getMessage()+","+e.getErrorCode());
+                                                    }
+                                                }
+                                            });
+
+
                                         }else{
                                             Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
                                         }

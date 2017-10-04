@@ -177,20 +177,31 @@ public class LoginActivity extends AppCompatActivity{
 
                             BmobQuery<StudentInfo> query = new BmobQuery<StudentInfo>();
                             query.addWhereEqualTo("studentID",usr);
-                            query.setLimit(10);
+                            query.setLimit(1);
                             query.findObjects(new FindListener<StudentInfo>() {
                                 @Override
                                 public void done(List<StudentInfo> list, BmobException e) {
+                                    final List<StudentInfo> lists = list;
                                     if(e!=null){
                                         StudentInfo studentInfo = new StudentInfo();
                                         studentInfo.setStudentID(usr);
                                         studentInfo.setPassword(pas);
                                         studentInfo.setUserName(UserName);
+                                        studentInfo.setMouldContribute(0);
+                                        studentInfo.setBlockNumber(0);
+                                        studentInfo.setRoomNumber(0);
+                                        studentInfo.setBookBuy(0);
+                                        studentInfo.setBookSell(0);
+                                        studentInfo.setWifiContribute(0);
+                                        studentInfo.setWifiIncome(0);
+                                        studentInfo.setDeliverGood(0);
+                                        studentInfo.setReceiptGood(0);
                                         studentInfo.save(new SaveListener<String>() {
                                             @Override
                                             public void done(String s, BmobException e) {
                                                 if(e == null){
                                                     editor.putBoolean("State", true);
+                                                    editor.putString("ObjectID",lists.get(0).getObjectId());
                                                     editor.commit();
                                                     Toast.makeText(LoginActivity.this, "登录成功！" + UserName, Toast.LENGTH_LONG).show();
                                                 }else {
@@ -199,6 +210,9 @@ public class LoginActivity extends AppCompatActivity{
                                                 }
                                             }
                                         });
+                                    }else {
+                                        editor.putString("ObjectID",list.get(0).getObjectId());
+                                        editor.commit();
                                     }
                                 }
                             });
