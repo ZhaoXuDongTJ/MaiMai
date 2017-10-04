@@ -67,7 +67,7 @@ public class litepalTestActivity extends AppCompatActivity {
 
             @Override
             public void onSwipedClear() {
-                Toast.makeText(litepalTestActivity.this, "data clear", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(litepalTestActivity.this, "data clear", Toast.LENGTH_SHORT).show();
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -93,6 +93,10 @@ public class litepalTestActivity extends AppCompatActivity {
         list.add(R.drawable.img_avatar_05);
         list.add(R.drawable.img_avatar_06);
         list.add(R.drawable.img_avatar_07);
+
+        Toast.makeText(litepalTestActivity.this, ""+R.drawable.img_avatar_01, Toast.LENGTH_SHORT).show();
+
+
     }
 
     private class MyAdapter extends RecyclerView.Adapter {

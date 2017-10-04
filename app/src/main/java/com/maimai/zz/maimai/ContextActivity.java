@@ -211,12 +211,32 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
                     if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                         String result = bundle.getString(CodeUtils.RESULT_STRING);
                       //  Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
-
                         //这里的values就是我们要传的值;
                         Intent intent = new Intent();
                         intent.putExtra("Scan", result);
                         intent.setClass(ContextActivity.this, SearchActivity.class);
-                        startActivity(intent);
+                        final Intent intent1 = intent;
+                        startActivity(intent1);
+
+
+//                        //  验证 程序
+//                        BmobQuery<BookLibBomb> bmobQuery  = new BmobQuery<BookLibBomb>();
+//                        bmobQuery.addWhereEqualTo("ScanCode",result);
+//                        bmobQuery.setLimit(1);
+//                        bmobQuery.findObjects(new FindListener<BookLibBomb>() {
+//
+//                            @Override
+//                            public void done(List<BookLibBomb> list, BmobException e) {
+//                                if(list.get(0) == null){
+//                                    //Toast.makeText(ContextActivity.this,"小Mai没有此书，请你提供一下呗！",Toast.LENGTH_LONG).show();
+//                                }else {
+//
+//                                }
+//                            }
+//
+//                        });
+
+
 
                     } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                         Toast.makeText(ContextActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();

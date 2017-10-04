@@ -57,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
                                 @Override
                                 public void done(String s, BmobException e) {
                                     if(e==null){
-                                        Toast.makeText(SearchActivity.this,"下载成功,保存路径:"+s,Toast.LENGTH_SHORT).show();
+                                      //  Toast.makeText(SearchActivity.this,"下载成功,保存路径:"+s,Toast.LENGTH_SHORT).show();
                                         Bitmap bitmap = ImgUtils.parseBitMap(filePath);    // 得到 bitmap  对象
                                         imageView.setImageBitmap(bitmap);   //  设置 imageview的图片显示  就是 转化一下
                                     }else{

@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                if(SUCCESD_PICTURE==0 || SUCCESD_CODE==0){
+                if(SUCCESD_PICTURE==0 && SUCCESD_CODE==0){
                     Toast.makeText(MainActivity.this, "请拍照书的封面和扫描书后面的条形码", Toast.LENGTH_LONG).show();
                 }else if(SUCCESD_PICTURE==1 && SUCCESD_CODE==1){
                     // 发送服务器
@@ -188,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
                     });
                     Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
 
+                }else if(SUCCESD_PICTURE==1 && SUCCESD_CODE==0){
+                    Toast.makeText(MainActivity.this,"请小主换一本，谢谢",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -241,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
                                 if(e != null){
                                     SUCCESD_CODE =1;
                                 }else {
+                                    SUCCESD_CODE =0;
                                     Toast.makeText(MainActivity.this,"小Mai有此书了，谢谢你！",Toast.LENGTH_LONG).show();
                                 }
                             }
