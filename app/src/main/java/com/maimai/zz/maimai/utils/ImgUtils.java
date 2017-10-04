@@ -6,8 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 
-
-
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -127,6 +125,9 @@ public class ImgUtils {
         Bitmap bitmap=BitmapFactory.decodeFile(filepath);
         return bitmap;
     }
+
+
+
 
 
 }

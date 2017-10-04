@@ -210,7 +210,7 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
                     }
                     if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                         String result = bundle.getString(CodeUtils.RESULT_STRING);
-                        Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
 
                         //这里的values就是我们要传的值;
                         Intent intent = new Intent();

@@ -45,9 +45,12 @@ public class SearchActivity extends AppCompatActivity {
             public void done(List<BookLibBomb> list, BmobException e) {
                 if(e==null){
                     for (BookLibBomb gameScore : list) {
+
+                        //  找到 图片 开始 下载这个图片 保存到本地
+
                         BmobFile bmobfile = gameScore.getCover();
                         if(bmobfile!= null){
-                            filePath = ImgUtils.FilePath();
+                            filePath = ImgUtils.FilePath();  // 本地 地址
                             File saveFile = new File(filePath);
                             //调用bmobfile.download方法
                             bmobfile.download(saveFile, new DownloadFileListener() {
@@ -55,8 +58,8 @@ public class SearchActivity extends AppCompatActivity {
                                 public void done(String s, BmobException e) {
                                     if(e==null){
                                         Toast.makeText(SearchActivity.this,"下载成功,保存路径:"+s,Toast.LENGTH_SHORT).show();
-                                        Bitmap bitmap = ImgUtils.parseBitMap(filePath);
-                                        imageView.setImageBitmap(bitmap);
+                                        Bitmap bitmap = ImgUtils.parseBitMap(filePath);    // 得到 bitmap  对象
+                                        imageView.setImageBitmap(bitmap);   //  设置 imageview的图片显示  就是 转化一下
                                     }else{
                                         Toast.makeText(SearchActivity.this,"下载失败："+e.getErrorCode()+","+e.getMessage(),Toast.LENGTH_SHORT).show();
                                     }
@@ -70,7 +73,8 @@ public class SearchActivity extends AppCompatActivity {
                         }
                     }
                 }else{
-
+                    finish();
+                    Toast.makeText(SearchActivity.this,"还没有这本书呢！发布一套模板把！",Toast.LENGTH_LONG).show();
                 }
             }
         });

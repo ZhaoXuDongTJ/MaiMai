@@ -27,9 +27,12 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
@@ -223,8 +226,28 @@ public class MainActivity extends AppCompatActivity {
                     if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                         String result = bundle.getString(CodeUtils.RESULT_STRING);
                         edit_scan.setText(result);
-                        SUCCESD_CODE =1;
+
                         liteScanNodeBook = result;
+
+                        //   查询 此书 是否 已经存在数据库
+
+                        BmobQuery<BookLibBomb> bmobQuery  = new BmobQuery<BookLibBomb>();
+                        bmobQuery.addWhereEqualTo("ScanCode",result);
+                        bmobQuery.setLimit(1);
+                        bmobQuery.findObjects(new FindListener<BookLibBomb>() {
+
+                            @Override
+                            public void done(List<BookLibBomb> list, BmobException e) {
+                                if(e != null){
+                                    SUCCESD_CODE =1;
+                                }else {
+                                    Toast.makeText(MainActivity.this,"小Mai有此书了，谢谢你！",Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                        });
+
+
                     } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                         Toast.makeText(MainActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
                     }
