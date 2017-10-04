@@ -35,7 +35,7 @@ public class SearchActivity extends AppCompatActivity {
         String ScanNode = intent.getStringExtra("Scan");
         textView = (TextView) findViewById(R.id.ImgPicScanNode);
         imageView = (ImageView) findViewById(R.id.ImgPicBook);
-        textView.setText(ScanNode);
+        textView.setText("书号 : "+ScanNode);
 
         BmobQuery<BookLibBomb> bmobQuery  = new BmobQuery<BookLibBomb>();
         bmobQuery.addWhereEqualTo("ScanCode",ScanNode);
@@ -57,7 +57,6 @@ public class SearchActivity extends AppCompatActivity {
                                         Toast.makeText(SearchActivity.this,"下载成功,保存路径:"+s,Toast.LENGTH_SHORT).show();
                                         Bitmap bitmap = ImgUtils.parseBitMap(filePath);
                                         imageView.setImageBitmap(bitmap);
-
                                     }else{
                                         Toast.makeText(SearchActivity.this,"下载失败："+e.getErrorCode()+","+e.getMessage(),Toast.LENGTH_SHORT).show();
                                     }

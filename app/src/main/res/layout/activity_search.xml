@@ -14,14 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="309dp"
         android:background="@color/colorgary"
-        android:layout_weight="0.56" />
+        android:layout_weight="0.98" />
 
     <TextView
         android:id="@+id/ImgPicScanNode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="xfdv"
-        android:layout_weight="0.16" />
+        android:text="xfdvd"
+        android:textSize="34dp" />
 
 
 </LinearLayout>
