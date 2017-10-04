@@ -69,9 +69,10 @@ public class LoginActivity extends AppCompatActivity{
         Bmob.initialize(this, "7a9a1ebc139655e8ca2c74b2b7c68b25");
         init();
 
+
         //判断本地是否 缓存
         if(pref.getBoolean("State",false) != false){
-            Toast.makeText(LoginActivity.this, "欢迎回来！"+pref.getString("UserName",""), Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "欢迎回来！"+pref.getString("name",""), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this,ContextActivity.class);
             startActivity(intent);
             finish();
@@ -149,6 +150,10 @@ public class LoginActivity extends AppCompatActivity{
         // add test  data
         editor = getSharedPreferences("data",MODE_PRIVATE).edit();
         pref = getSharedPreferences("data",MODE_PRIVATE);
+
+        //配置 WiFi公社
+        editor.putString("wifiInfoObjID","wifiInfo");
+        editor.commit();
     }
 
     private Handler handle = new Handler() {
@@ -171,7 +176,7 @@ public class LoginActivity extends AppCompatActivity{
 
                             editor.putString("id", usr);
                             editor.putString("name", UserName);
-
+                            editor.putBoolean("State", true);
                             notifyAll();
                             editor.commit();
 
