@@ -23,6 +23,7 @@ import com.maimai.zz.maimai.utils.AppConfig;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -44,6 +45,10 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     //
     public FreeDialog freeDialog;
     public FreeDialog freeDialog2;
+    public Integer NumSend;
+    public Integer NumReceiver;
+    //
+    String student;
     //
 
     private FloatingActionButton floatBtn;
@@ -88,20 +93,41 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
             }
         });
 
+
+        student = pref.getString("ObjectID","");
+
         freeDialog = new FreeDialog(getActivity());
         freeDialog2 = new FreeDialog(getActivity());
 
+        if(freeDialog2!=null){
+            freeDialog2 = new FreeDialog(getActivity());
+        }
+
+        if(freeDialog!=null){
+            freeDialog2 = new FreeDialog(getActivity());
+        }
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                synchroModuleNumber();
                 freeDialog.setTitle("确认发货");
-                freeDialog.setMessage("点击确定交易就完成啦！");
+                freeDialog.setMessage("点击确定交易就完成啦！\n"+"一共收货"+NumSend);
                 freeDialog.setYesOnclickListener("确定", new FreeDialog.onYesOnclickListener() {
                     @Override
                     public void onYesClick() {
                         // 数据库操作
+
+                        StudentInfo studentInfo = new StudentInfo();
+                        studentInfo.setDeliverGood(0);
+                        studentInfo.update(student, new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+
+                            }
+                        });
+
+
 
                         freeDialog.dismiss();
                     }
@@ -114,19 +140,29 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
                     }
                 });
                 freeDialog.show();
+
             }
         });
 
         receiver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                synchroModuleNumber();
                 freeDialog2.setTitle("确认收货");
-                freeDialog2.setMessage("点击确定交易就完成收获啦！");
+                freeDialog2.setMessage("点击确定交易就完成收获啦！\n"+"一共收货"+NumReceiver);
                 freeDialog2.setYesOnclickListener("确定", new FreeDialog.onYesOnclickListener() {
                     @Override
                     public void onYesClick() {
                         // 数据库操作
+
+                        StudentInfo studentInfo = new StudentInfo();
+                        studentInfo.setReceiptGood(0);
+                        studentInfo.update(student, new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+
+                            }
+                        });
 
                         freeDialog2.dismiss();
                     }
@@ -158,6 +194,9 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     }
 
     public void synchroModuleNumber(){
+
+        freeDialog = new FreeDialog(getActivity());
+        freeDialog2 = new FreeDialog(getActivity());
         //  同步 数据;
         BmobQuery<StudentInfo> stu = new BmobQuery<StudentInfo>();
         stu.getObject(pref.getString("ObjectID", ""), new QueryListener<StudentInfo>() {
@@ -167,8 +206,10 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
                     contribute.setText(AppConfig.String_ModuleNumber + studentInfo.getMouldContribute());
                     jieyue.setText(AppConfig.String_jieyue + studentInfo.getBookBuy());
                     gongxiang.setText(AppConfig.String_gongxiang + studentInfo.getBookSell());
-                    send.setText(AppConfig.String_fahuo + studentInfo.getDeliverGood());
-                    receiver.setText(AppConfig.String_shouhuo + studentInfo.getReceiptGood());
+                    NumSend = studentInfo.getDeliverGood();
+                    send.setText(AppConfig.String_fahuo + NumSend);
+                    NumReceiver = studentInfo.getReceiptGood();
+                    receiver.setText(AppConfig.String_shouhuo + NumReceiver);
                 }
             }
         });
