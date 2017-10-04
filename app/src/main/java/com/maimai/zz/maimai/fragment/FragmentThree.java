@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.maimai.zz.maimai.MainActivity;
 import com.maimai.zz.maimai.R;
 import com.maimai.zz.maimai.bombs.StudentInfo;
+import com.maimai.zz.maimai.dialog.FreeDialog;
 import com.maimai.zz.maimai.utils.AppConfig;
 
 import cn.bmob.v3.BmobQuery;
@@ -40,6 +41,9 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     public Button gongxiang;
     public Button send;
     public Button receiver;
+    //
+    public FreeDialog freeDialog;
+    public FreeDialog freeDialog2;
     //
 
     private FloatingActionButton floatBtn;
@@ -84,10 +88,59 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
             }
         });
 
+        freeDialog = new FreeDialog(getActivity());
+        freeDialog2 = new FreeDialog(getActivity());
 
 
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                freeDialog.setTitle("确认发货");
+                freeDialog.setMessage("点击确定交易就完成啦！");
+                freeDialog.setYesOnclickListener("确定", new FreeDialog.onYesOnclickListener() {
+                    @Override
+                    public void onYesClick() {
+                        // 数据库操作
 
+                        freeDialog.dismiss();
+                    }
+                });
+                freeDialog.setNoOnclickListener("取消", new FreeDialog.onNoOnclickListener() {
+                    @Override
+                    public void onNoClick() {
+                       // no operator
+                        freeDialog.dismiss();
+                    }
+                });
+                freeDialog.show();
+            }
+        });
+
+        receiver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                freeDialog2.setTitle("确认收货");
+                freeDialog2.setMessage("点击确定交易就完成收获啦！");
+                freeDialog2.setYesOnclickListener("确定", new FreeDialog.onYesOnclickListener() {
+                    @Override
+                    public void onYesClick() {
+                        // 数据库操作
+
+                        freeDialog2.dismiss();
+                    }
+                });
+                freeDialog.setNoOnclickListener("取消", new FreeDialog.onNoOnclickListener() {
+                    @Override
+                    public void onNoClick() {
+                        // no operator
+                        freeDialog2.dismiss();
+                    }
+                });
+                freeDialog2.show();
+            }
+        });
 
         return view;
     }
