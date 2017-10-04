@@ -12,6 +12,8 @@ public class BookLibBomb extends BmobObject{
     private String StudentID;
     private String ScanCode;
     private BmobFile cover;
+    private Integer seller;
+    private Integer buyer;
 
 
     public String getStudentID() {
@@ -32,5 +34,16 @@ public class BookLibBomb extends BmobObject{
     public void setCover(BmobFile cover) {
         this.cover = cover;
     }
-
+    public Integer getSeller() {
+        return seller;
+    }
+    public void setSeller(Integer seller) {
+        this.seller = seller;
+    }
+    public Integer getBuyer() {
+        return buyer;
+    }
+    public void setBuyer(Integer buyer) {
+        this.buyer = buyer;
+    }
 }

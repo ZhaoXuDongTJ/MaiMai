@@ -20,7 +20,7 @@ public class StudentInfo extends BmobObject {
     //  节约书本 贡献书本
     private Integer bookBuy;
     private Integer bookSell;
-    // 待收货 待发货
+    //  待发货  待收货
     private Integer deliverGood;
     private Integer receiptGood;
     // 模板 贡献 数量

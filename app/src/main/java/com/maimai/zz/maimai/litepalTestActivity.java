@@ -1,5 +1,6 @@
 package com.maimai.zz.maimai;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,9 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.maimai.zz.maimai.bombs.StudentInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 import me.yuqirong.cardswipelayout.CardConfig;
 import me.yuqirong.cardswipelayout.CardItemTouchHelperCallback;
 import me.yuqirong.cardswipelayout.CardLayoutManager;
@@ -21,14 +26,17 @@ import me.yuqirong.cardswipelayout.OnSwipeListener;
 
 
 public class litepalTestActivity extends AppCompatActivity {
-
+    // 共享 存储
+    public SharedPreferences pref;
+    private String ObjectId;
     private List<Integer> list = new ArrayList<>();
-
+   // private List<String> list = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_litepal_test);
-
+        pref = getSharedPreferences("data",MODE_PRIVATE);
+        ObjectId = pref.getString("ObjectID","");
         initView();
         initData();
     }
@@ -63,6 +71,23 @@ public class litepalTestActivity extends AppCompatActivity {
                 myHolder.likeImageView.setAlpha(0f);
                 // 修改 名字  更新
                 Toast.makeText(litepalTestActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
+
+                ///   购买 此书  修改 数据库
+                if(! (direction == CardConfig.SWIPED_LEFT)){
+
+
+                    StudentInfo studentInfo = new StudentInfo();
+                    studentInfo.increment("bookBuy");
+                    studentInfo.increment("receiptGood");
+                    studentInfo.update(ObjectId, new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if(e==null){
+                                Toast.makeText(litepalTestActivity.this,"此书已经收入囊中",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
 
             @Override
@@ -93,8 +118,40 @@ public class litepalTestActivity extends AppCompatActivity {
         list.add(R.drawable.img_avatar_05);
         list.add(R.drawable.img_avatar_06);
         list.add(R.drawable.img_avatar_07);
+//
+//        Toast.makeText(litepalTestActivity.this, ""+R.drawable.img_avatar_01, Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(litepalTestActivity.this, ""+R.drawable.img_avatar_01, Toast.LENGTH_SHORT).show();
+//        BmobQuery<BookLibBomb> bmobQuery = new BmobQuery<BookLibBomb>();
+//        bmobQuery.addWhereEqualTo("cover","images.jpeg");
+//        bmobQuery.setLimit(7);
+//        bmobQuery.findObjects(new FindListener<BookLibBomb>() {
+//            @Override
+//            public void done(List<BookLibBomb> lista, BmobException e) {
+//                for(BookLibBomb i : lista){
+//                    BmobFile bmobFile = new BmobFile();
+//                    String filePath = ImgUtils.FilePath();
+//                    File saveFile = new File(filePath);
+//                    list.add(filePath);
+//                    bmobFile.download(saveFile, new DownloadFileListener() {
+//                        @Override
+//                        public void done(String s, BmobException e) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onProgress(Integer integer, long l) {
+//
+//                        }
+//                    });
+//
+//
+//                }
+//            }
+//        });
+//
+
+
+
 
 
     }

@@ -43,6 +43,7 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     //
 
     private FloatingActionButton floatBtn;
+    private FloatingActionButton ResetBtn;
     private Button contribute;
     @Nullable
     @Override
@@ -50,7 +51,15 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_three,container,false);
 
         floatBtn = (FloatingActionButton)view.findViewById(R.id.floatBtn);
+        ResetBtn = (FloatingActionButton)view.findViewById(R.id.ResetBtn);
+
         floatBtn.setOnClickListener(this);
+        ResetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                synchroModuleNumber();
+            }
+        });
 ////
         jieyue = (Button) view.findViewById(R.id.jieyue);
         gongxiang = (Button) view.findViewById(R.id.gongxiang);
