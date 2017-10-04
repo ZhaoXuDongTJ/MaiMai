@@ -59,6 +59,11 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
             }
         });
 
+        //  同步 数据;
+
+
+
+
         return view;
     }
 
@@ -73,4 +78,9 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
+
+
+
+
+
 }

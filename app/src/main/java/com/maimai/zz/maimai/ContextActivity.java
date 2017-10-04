@@ -208,4 +208,12 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
                 break;
         }
     }
+
+    //  检查 版本
+    protected void CheckVersionNumber(){
+        
+    }
+
+
+
 }
