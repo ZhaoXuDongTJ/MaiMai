@@ -71,7 +71,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-
+                android:id="@+id/ScanNodeID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_id"

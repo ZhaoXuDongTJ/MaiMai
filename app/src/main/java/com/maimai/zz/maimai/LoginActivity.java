@@ -11,17 +11,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.maimai.zz.maimai.bombs.StudentInfo;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import org.jsoup.nodes.Document;
 
+import java.util.List;
+
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * A login screen that offers login via studentId/password.
@@ -32,6 +40,7 @@ public class LoginActivity extends AppCompatActivity{
     private TextInputLayout username;
     private TextInputLayout password;
     private TextInputLayout inputCodes;
+    private EditText ScanNodeID;
 
     private ImageView codes;
     private final String codesUrl = "http://my.tjut.edu.cn/captchaGenerate.portal";
@@ -67,42 +76,14 @@ public class LoginActivity extends AppCompatActivity{
             startActivity(intent);
             finish();
         }
-        //登入成功 加入 共享内存
-        //     editor.putString("StudentID","20162434");
-//            editor.putString("password","000000");
-//            editor.putBoolean("Stata",false);
-//            editor.apply();
-
-//                String sql_StudentID = pref.getString("StudentID","");
-//                String sql_password = pref.getString("password","");
         mStudent_sign.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-
                 usr = username.getEditText().getText().toString();
                 pas = password.getEditText().getText().toString();
                 cod = inputCodes.getEditText().getText().toString();
                 login();
-//                if(username.isEmpty()||password.isEmpty()){
-//                    Toast.makeText(LoginActivity.this, "学号或密码不可以空", Toast.LENGTH_LONG).show();
-//                }else if(username.length() == 8){
-//                    if(username.equals(sql_StudentID) && password.equals(sql_password)){
-//                        Toast.makeText(LoginActivity.this, "认证成功", Toast.LENGTH_LONG).show();
-//                        editor.putBoolean("State",true);
-//                        editor.apply();
-//                        finish();
-//                        Intent intent = new Intent(LoginActivity.this,ContextActivity.class);
-//                        startActivity(intent);
-//                    }else {
-//                        Toast.makeText(LoginActivity.this, "认证失败,请检查账号密码", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-
-//                Intent intent = new Intent(LoginActivity.this,ContextActivity.class);
-//                startActivity(intent);
-
-
             }
         });
 
@@ -132,7 +113,7 @@ public class LoginActivity extends AppCompatActivity{
                     }
                     if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                         String result = bundle.getString(CodeUtils.RESULT_STRING);
-//                        mStudentIdView.setText(result);
+                        ScanNodeID.setText(result);
                         Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
                     } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                         Toast.makeText(LoginActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
@@ -152,6 +133,7 @@ public class LoginActivity extends AppCompatActivity{
         username = (TextInputLayout) findViewById(R.id.id);
         password = (TextInputLayout) findViewById(R.id.password);
         inputCodes = (TextInputLayout) findViewById(R.id.inputCodes);
+        ScanNodeID = (EditText)findViewById(R.id.ScanNodeID);
 
         codes = (ImageView) findViewById(R.id.codes);
         httpRequester.setChoose(false);
@@ -189,10 +171,41 @@ public class LoginActivity extends AppCompatActivity{
 
                             editor.putString("id", usr);
                             editor.putString("name", UserName);
-                            editor.putBoolean("State", true);
+
                             notifyAll();
                             editor.commit();
-                            Toast.makeText(LoginActivity.this, "登录成功！" + UserName+"。正在更新数据", Toast.LENGTH_LONG).show();
+
+                            BmobQuery<StudentInfo> query = new BmobQuery<StudentInfo>();
+                            query.addWhereEqualTo("studentID",usr);
+                            query.setLimit(10);
+                            query.findObjects(new FindListener<StudentInfo>() {
+                                @Override
+                                public void done(List<StudentInfo> list, BmobException e) {
+                                    if(e!=null){
+                                        StudentInfo studentInfo = new StudentInfo();
+                                        studentInfo.setStudentID(usr);
+                                        studentInfo.setPassword(pas);
+                                        studentInfo.setUserName(UserName);
+                                        studentInfo.save(new SaveListener<String>() {
+                                            @Override
+                                            public void done(String s, BmobException e) {
+                                                if(e == null){
+                                                    editor.putBoolean("State", true);
+                                                    editor.commit();
+                                                    Toast.makeText(LoginActivity.this, "登录成功！" + UserName, Toast.LENGTH_LONG).show();
+                                                }else {
+                                                    Toast.makeText(LoginActivity.this, "网络可能开小差！", Toast.LENGTH_LONG).show();
+
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                            Toast.makeText(LoginActivity.this, "登录成功！" + UserName, Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(LoginActivity.this,ContextActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
 
                     } else {

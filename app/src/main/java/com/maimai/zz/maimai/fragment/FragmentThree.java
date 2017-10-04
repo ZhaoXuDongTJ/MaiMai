@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maimai.zz.maimai.MainActivity;
@@ -27,7 +28,9 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     // 共享 存储
     public SharedPreferences.Editor editor;
     public SharedPreferences pref;
-
+    //
+    public TextView frag3Name;
+    //
 
     private FloatingActionButton floatBtn;
     private Button contribute;
@@ -39,6 +42,12 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
         floatBtn = (FloatingActionButton)view.findViewById(R.id.floatBtn);
         floatBtn.setOnClickListener(this);
 
+
+        editor  = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE).edit();
+        pref = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE);
+
+        frag3Name = (TextView) view.findViewById(R.id.frag3Name);
+        frag3Name.setText(pref.getString("name",""));
 
         //跳转 页面的 增加贡献模板
         contribute = (Button) view.findViewById(R.id.contribute);
@@ -56,8 +65,7 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         Toast.makeText(getActivity(),"float",Toast.LENGTH_SHORT).show();
-        editor  = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE).edit();
-        pref = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE);
+
         editor.clear();
         editor.apply();
         Intent i = new ContextWrapper(getContext()).getBaseContext().getPackageManager()
