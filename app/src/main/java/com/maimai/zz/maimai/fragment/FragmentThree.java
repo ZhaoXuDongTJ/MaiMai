@@ -16,6 +16,12 @@ import android.widget.Toast;
 
 import com.maimai.zz.maimai.MainActivity;
 import com.maimai.zz.maimai.R;
+import com.maimai.zz.maimai.bombs.StudentInfo;
+import com.maimai.zz.maimai.utils.AppConfig;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -30,6 +36,10 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     public SharedPreferences pref;
     //
     public TextView frag3Name;
+    public Button jieyue;
+    public Button gongxiang;
+    public Button send;
+    public Button receiver;
     //
 
     private FloatingActionButton floatBtn;
@@ -41,6 +51,11 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
 
         floatBtn = (FloatingActionButton)view.findViewById(R.id.floatBtn);
         floatBtn.setOnClickListener(this);
+////
+        jieyue = (Button) view.findViewById(R.id.jieyue);
+        gongxiang = (Button) view.findViewById(R.id.gongxiang);
+        send = (Button) view.findViewById(R.id.send);
+        receiver = (Button) view.findViewById(R.id.receiver);
 
 
         editor  = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE).edit();
@@ -56,10 +71,11 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), MainActivity.class));
+                synchroModuleNumber();
             }
         });
 
-        //  同步 数据;
+
 
 
 
@@ -79,7 +95,22 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
         startActivity(i);
     }
 
-
+    public void synchroModuleNumber(){
+        //  同步 数据;
+        BmobQuery<StudentInfo> stu = new BmobQuery<StudentInfo>();
+        stu.getObject(pref.getString("ObjectID", ""), new QueryListener<StudentInfo>() {
+            @Override
+            public void done(StudentInfo studentInfo, BmobException e) {
+                if(e==null){
+                    contribute.setText(AppConfig.String_ModuleNumber + studentInfo.getMouldContribute());
+                    jieyue.setText(AppConfig.String_jieyue + studentInfo.getBookBuy());
+                    gongxiang.setText(AppConfig.String_gongxiang + studentInfo.getBookSell());
+                    send.setText(AppConfig.String_fahuo + studentInfo.getDeliverGood());
+                    receiver.setText(AppConfig.String_shouhuo + studentInfo.getReceiptGood());
+                }
+            }
+        });
+    }
 
 
 

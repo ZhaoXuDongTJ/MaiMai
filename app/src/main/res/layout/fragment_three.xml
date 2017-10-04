@@ -27,12 +27,14 @@
         android:paddingTop="30dp"
         android:gravity="center_vertical">
         <Button
+            android:id="@+id/jieyue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save_book"
             android:background="@null"
             android:clickable="false"/>
         <Button
+            android:id="@+id/gongxiang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/contribute_book"
