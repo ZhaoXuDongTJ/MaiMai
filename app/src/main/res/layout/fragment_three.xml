@@ -40,13 +40,15 @@
             android:text="@string/contribute_book"
             android:background="@null"
             android:clickable="false"/>
+
         <Button
+            android:id="@+id/send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/send_object"
             android:background="@null"
-            android:id="@+id/send"
-            android:drawableLeft="@drawable/send_object"/>
+            android:drawableLeft="@drawable/send_object"
+            android:text="@string/send_object" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

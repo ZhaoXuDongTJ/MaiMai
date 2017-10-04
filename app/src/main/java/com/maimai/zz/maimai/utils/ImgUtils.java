@@ -118,6 +118,15 @@ public class ImgUtils {
         return filepath;
     }
 
+    public static String FilePath (){
+        String  si= Environment.getExternalStorageDirectory()+"/DCIM/images"+Math.random()+".jpeg";
+        return si;
+    }
+
+    public static Bitmap parseBitMap(String filepath){
+        Bitmap bitmap=BitmapFactory.decodeFile(filepath);
+        return bitmap;
+    }
 
 
 }

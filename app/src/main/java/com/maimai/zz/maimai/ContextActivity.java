@@ -37,6 +37,8 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
     private FragmentOne fragmentOne;
     private FragmentTwo fragmentTwo;
     private FragmentThree fragmentThree;
+
+
     private Fragment from ;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -47,7 +49,7 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
     public static final int REQUEST_CODE = 3;
 
 
-
+// 下面 按钮 切换；
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -83,12 +85,12 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         initView();
-        initListner();
+
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_container,fragmentOne).commit();
         from = fragmentOne;
-
+        initListner();
         //设置标题栏
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
@@ -126,6 +128,7 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
         fragmentOne = new FragmentOne();
         fragmentTwo = new FragmentTwo();
         fragmentThree = new FragmentThree();
+
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
         toolbar = (Toolbar)findViewById(R.id.toolBar);
@@ -208,6 +211,13 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
                     if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                         String result = bundle.getString(CodeUtils.RESULT_STRING);
                         Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+
+                        //这里的values就是我们要传的值;
+                        Intent intent = new Intent();
+                        intent.putExtra("Scan", result);
+                        intent.setClass(ContextActivity.this, SearchActivity.class);
+                        startActivity(intent);
+
                     } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                         Toast.makeText(ContextActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
                     }
@@ -219,7 +229,7 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
     }
 
     //  检查 版本
-    protected void CheckVersionNumber(){
+    protected  void CheckVersionNumber(){
         BmobQuery<VersionNumber> versionNumberBmobQuery = new BmobQuery<VersionNumber>();
         versionNumberBmobQuery.getObject(BmobObjectID.VerSionNumber, new QueryListener<VersionNumber>() {
             @Override

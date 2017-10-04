@@ -8,12 +8,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.maimai.zz.maimai.utils.ImgUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +42,7 @@ public class litepalTestActivity extends AppCompatActivity {
 
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
+
                 MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
                 viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
                 if (direction == CardConfig.SWIPING_LEFT) {
@@ -64,6 +61,7 @@ public class litepalTestActivity extends AppCompatActivity {
                 viewHolder.itemView.setAlpha(1f);
                 myHolder.dislikeImageView.setAlpha(0f);
                 myHolder.likeImageView.setAlpha(0f);
+                // 修改 名字  更新
                 Toast.makeText(litepalTestActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
             }
 
@@ -76,7 +74,7 @@ public class litepalTestActivity extends AppCompatActivity {
                         initData();
                         recyclerView.getAdapter().notifyDataSetChanged();
                     }
-                }, 3000L);
+                }, 0);
             }
 
         });
@@ -87,6 +85,7 @@ public class litepalTestActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        //  传 数据  照片
         list.add(R.drawable.img_avatar_01);
         list.add(R.drawable.img_avatar_02);
         list.add(R.drawable.img_avatar_03);

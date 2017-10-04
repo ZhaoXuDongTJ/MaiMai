@@ -51,15 +51,17 @@
 
     <string name="join">加入公社</string>
     <string name="isMember">您已是公社成员！</string>
-    <string name="net_speed">网速：0</string>
-    <string name="net_power">强度：0</string>
+    <string name="net_speed">网速：0kb/s</string>
+    <string name="net_power">强度：0%</string>
 
-    <string name="save_book">节约书本:0</string>
-    <string name="contribute_book">贡献书本:0</string>
+    <string name="save_book">节约书本</string>
+    <string name="contribute_book">贡献书本</string>
     <string name="send_object">待发货</string>
     <string name="receiver_object">&#160;&#160;&#160;待收货</string>
     <string name="text_contribute">&#160;&#160;&#160;&#160;教材模板贡献</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

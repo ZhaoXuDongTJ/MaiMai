@@ -32,9 +32,6 @@ public class FragmentTwo extends Fragment implements BaseFragment{
         initView();
         initListner();
 
-
-
-
         return view;
     }
 
