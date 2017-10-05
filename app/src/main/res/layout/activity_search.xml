@@ -12,7 +12,7 @@
     <ImageView
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:id="@+id/ImgPicBook"
-        android:src="@drawable/bookshu"
+        android:src="@drawable/nodatas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorgary"
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="默认"
-        android:textSize="28dp" />
+        android:textSize="34dp" />
 
     <LinearLayout
         android:layout_margin="@dimen/activity_vertical_margin"

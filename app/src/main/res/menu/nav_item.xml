@@ -2,26 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/mainFunc">
         <item
-            android:icon="@drawable/bookshu"
+            android:icon="@drawable/book"
             android:title="@string/book"
             android:id="@+id/book"/>
         <item
-            android:icon="@drawable/wifizjyz"
+            android:icon="@drawable/wifi"
             android:title="@string/wifi"
             android:id="@+id/wifi"/>
         <item
-            android:icon="@drawable/gerenxinxi"
+            android:icon="@drawable/personinfo"
             android:title="@string/person_info"
             android:id="@+id/personInfo"/>
     </group>
     <group>
         <item
-
-            android:icon="@drawable/setting"
+            android:icon="@drawable/set"
             android:title="@string/set"
             android:id="@+id/set"/>
         <item
-            android:icon="@drawable/guanyuz"
+            android:icon="@drawable/about"
             android:title="@string/about"
             android:id="@+id/about"/>
     </group>

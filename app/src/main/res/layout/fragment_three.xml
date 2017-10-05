@@ -33,7 +33,7 @@
             android:text="@string/save_book"
             android:background="@null"
             android:clickable="false"
-            android:drawableLeft="@drawable/jieyueshubenz"/>
+            android:drawableLeft="@drawable/jieyue"/>
         <Button
             android:id="@+id/gongxiang"
             android:layout_width="wrap_content"
@@ -41,14 +41,14 @@
             android:text="@string/contribute_book"
             android:background="@null"
             android:clickable="false"
-            android:drawableLeft="@drawable/contributionz"/>
+            android:drawableLeft="@drawable/gongxiangshubeng"/>
 
         <Button
             android:id="@+id/send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@drawable/daifahuoz"
+            android:drawableLeft="@drawable/send_object"
             android:text="@string/send_object" />
 
         <Button
@@ -57,14 +57,14 @@
             android:text="@string/receiver_object"
             android:background="@null"
             android:id="@+id/receiver"
-            android:drawableLeft="@drawable/daishouhuoz"/>
+            android:drawableLeft="@drawable/receiver_object"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_contribute"
             android:background="@null"
             android:id="@+id/contribute"
-            android:drawableLeft="@drawable/tczz"/>
+            android:drawableLeft="@drawable/contribute"/>
 
     </LinearLayout>
 
