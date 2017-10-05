@@ -9,53 +9,60 @@
     android:baselineAligned="false"
     android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/openCamera"
-        android:layout_width="202dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
-
     <ImageView
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:id="@+id/imageOfBook"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.73"
-        android:src="@drawable/loadingpicture"/>
-
-    <ImageButton
-        android:id="@+id/ScanNode"
-        android:layout_width="198dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/scan_code" />
+        android:src="@drawable/loading28" />
 
     <EditText
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:id="@+id/edit_scan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.08"
         android:ems="10"
-        android:inputType="number"
-        android:layout_weight="0.19" />
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20">
+        <ImageButton
+            android:id="@+id/openCamera"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
+
+        <ImageButton
+            android:id="@+id/ScanNode"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/scan_code" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:weightSum="1">
 
         <ImageButton
             android:id="@+id/cancelIt"
-            android:layout_width="157dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.23"
+            android:layout_weight="0.30"
             app:srcCompat="@drawable/cancel_book" />
 
         <ImageButton
             android:id="@+id/publishIt"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.78"
             app:srcCompat="@drawable/publish_book" />
 
     </LinearLayout>

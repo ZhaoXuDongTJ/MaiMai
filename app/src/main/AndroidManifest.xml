@@ -30,6 +30,10 @@
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     //
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -64,11 +68,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".litepalTestActivity"></activity>
+        <activity android:name=".litepalTestActivity">
+
+        </activity>
         <activity
             android:name=".ContextActivity"
-            android:label="@string/title_activity_context"></activity>
-        <activity android:name=".SearchActivity"></activity>
+            android:label="@string/title_activity_context">
+
+        </activity>
+        <activity android:name=".SearchActivity">
+
+        </activity>
     </application>
 
 </manifest>
