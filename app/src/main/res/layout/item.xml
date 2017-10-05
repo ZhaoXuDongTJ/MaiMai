@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="336dp"
-    android:layout_height="426dp"
+    android:layout_height="486dp"
     android:background="@drawable/img_card_background"
     android:gravity="center"
     android:orientation="vertical">
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="小姐姐"
+            android:text="推荐读物"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
@@ -66,7 +66,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/shape_age"
             android:gravity="center"
-            android:text="♀ 23"
+            android:text="￥ 5"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -77,7 +77,7 @@
             android:layout_marginLeft="4dp"
             android:background="@drawable/shape_constellation"
             android:gravity="center"
-            android:text="狮子座"
+            android:text="不砍价"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:layout_above="@+id/textView"
