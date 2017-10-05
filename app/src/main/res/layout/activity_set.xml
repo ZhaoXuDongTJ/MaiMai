@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#f2f2f2">
+    <TextView
+        android:id="@+id/textViewx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="140dp"
+        android:textColor="#212121"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="楼    号:"
+        android:textColor="#212121"
+        android:textSize="20sp"
+        android:layout_below="@+id/textViewx"
+        android:layout_alignStart="@+id/textViewx"
+        android:layout_marginTop="17dp" />
+
+    <TextView
+        android:id="@+id/textViewss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="宿舍号:"
+        android:textColor="#212121"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/editTexts"
+        android:layout_alignBottom="@+id/editTexts"
+        android:layout_alignStart="@+id/textViews" />
+
+    <Button
+        android:id="@+id/buttont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:textSize="23sp"
+        android:text="提交"
+        android:layout_below="@+id/editTexts"
+        android:layout_alignParentStart="true" />
+
+
+    <EditText
+        android:id="@+id/editTextl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="例如：29"
+        android:layout_marginStart="27dp"
+        android:layout_alignBaseline="@+id/textViews"
+        android:layout_alignBottom="@+id/textViews"
+        android:layout_toEndOf="@+id/textViews" />
+
+    <EditText
+        android:id="@+id/editTexts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="例如：001"
+        android:layout_below="@+id/editTextl"
+        android:layout_alignStart="@+id/editTextl"
+        android:layout_marginTop="34dp" />
+
+
+</RelativeLayout>

@@ -30,8 +30,8 @@
     //丽姐
     <string name="title_activity_context">ContextActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">WIFI</string>
+    <string name="title_notifications">Private</string>
 
     <string name="name">MaiMai</string>
     <string name="info">属于你的小天地</string>
