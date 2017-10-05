@@ -31,20 +31,32 @@ public class litepalTestActivity extends AppCompatActivity {
     private String ObjectId;
     private List<Integer> list = new ArrayList<>();
    // private List<String> list = new ArrayList<String>();
+//    private List<Uri> list = new ArrayList<>();
+   // private List<Bitmap> list = new ArrayList<Bitmap>();
+
+
+    public int temp = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_litepal_test);
         pref = getSharedPreferences("data",MODE_PRIVATE);
         ObjectId = pref.getString("ObjectID","");
+        temp = 0;
         initView();
         initData();
+
+
+
     }
 
     private void initView() {
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(new MyAdapter());
+
         CardItemTouchHelperCallback cardCallback = new CardItemTouchHelperCallback(recyclerView.getAdapter(), list);
         cardCallback.setOnSwipedListener(new OnSwipeListener<Integer>() {
 
@@ -111,13 +123,127 @@ public class litepalTestActivity extends AppCompatActivity {
 
     private void initData() {
         //  传 数据  照片
-        list.add(R.drawable.img_avatar_01);
-        list.add(R.drawable.img_avatar_02);
-        list.add(R.drawable.img_avatar_03);
-        list.add(R.drawable.img_avatar_04);
-        list.add(R.drawable.img_avatar_05);
-        list.add(R.drawable.img_avatar_06);
-        list.add(R.drawable.img_avatar_07);
+//        list.add(R.drawable.img_avatar_01);
+//        list.add(R.drawable.img_avatar_02);
+//        list.add(R.drawable.img_avatar_03);
+//        list.add(R.drawable.img_avatar_04);
+//        list.add(R.drawable.img_avatar_05);
+//        list.add(R.drawable.img_avatar_06);
+//        list.add(R.drawable.img_avatar_07);
+
+
+        switch (temp){
+
+            case 0:
+                             list.add(R.drawable.zen0);
+                break;
+            case 1:        list.add(R.drawable.zen21);
+                break;
+            case 2:         list.add(R.drawable.zen2);
+                break;
+            case 3:        list.add(R.drawable.zen3);
+                break;
+            case 4:        list.add(R.drawable.zen4);
+                break;
+            case 5:        list.add(R.drawable.zen5);
+                break;
+            case 6:         list.add(R.drawable.zen6);
+                break;
+            case 7:        list.add(R.drawable.zen7);
+                break;
+            case 8:        list.add(R.drawable.zen8);
+                break;
+            case 9:         list.add(R.drawable.zen9);
+                break;
+            case 11:        list.add(R.drawable.zen10);
+                break;
+            case 12:         list.add(R.drawable.zen11);
+                break;
+            case 10:        list.add(R.drawable.zen13);
+                break;
+            case 13:        list.add(R.drawable.zen14);
+                break;
+            case 14:        list.add(R.drawable.zen15);
+                break;
+            case 15:         list.add(R.drawable.zen16);
+                break;
+            case 16:         list.add(R.drawable.zen17);
+                break;
+            case 17:        list.add(R.drawable.zen18);
+                break;
+            case 18:         list.add(R.drawable.zen19);
+                break;
+            case 19:        list.add(R.drawable.zen20);
+                break;
+            case 20:         list.add(R.drawable.zen1);
+                break;
+            case 21:         list.add(R.drawable.zen22);
+                break;
+            case 22:  list.add(R.drawable.zen9);break;
+         default:
+             list.add(R.drawable.zen2);
+             break;
+
+        }
+
+        temp ++;
+        if(temp == 22){
+            temp=0;
+        }
+
+
+
+//        BmobQuery<BookLibBomb> query = new BmobQuery<BookLibBomb>();
+//        query.addWhereEqualTo("StudentID","20162434");
+//        query.setLimit(7);
+//        query.findObjects(new FindListener<BookLibBomb>() {
+//            @Override
+//            public void done(final List<BookLibBomb> lists, BmobException e) {
+//                if(null ==e){
+//                    for(BookLibBomb bookLibBomb : lists){
+//                        BmobFile bmobFile = bookLibBomb.getCover();
+//                        if(bmobFile!=null){
+//                             final String filepath = ImgUtils.FilePath();
+//                            final File saveFile = new File(filepath);
+//
+//                           // list.add(Uri.parse(bmobFile.getFileUrl()));
+//
+//                            bmobFile.download(saveFile, new DownloadFileListener() {
+//                                @Override
+//                                public void done(String s, BmobException e) {
+//                                    Toast.makeText(litepalTestActivity.this,"下载OK", Toast.LENGTH_SHORT).show();
+//
+//
+//
+//
+//                                }
+//                                @Override
+//                                public void onProgress(Integer integer, long l) {
+//
+//                                }
+//                            });
+//
+////                            list.add(ImgUtils.toUri(filepath));
+//                        }else {
+//                            Toast.makeText(litepalTestActivity.this,"bmobFile:没有", Toast.LENGTH_SHORT).show();
+//
+//                      }
+////
+//                    }
+//                }else {
+//                    // Error
+//                    Toast.makeText(litepalTestActivity.this,"网络超时", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
+////
+
+
+
+
+
+
 //
 //        Toast.makeText(litepalTestActivity.this, ""+R.drawable.img_avatar_01, Toast.LENGTH_SHORT).show();
 
@@ -167,6 +293,13 @@ public class litepalTestActivity extends AppCompatActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
             avatarImageView.setImageResource(list.get(position));
+            //  Uri
+          //  avatarImageView.setImageURI(list.get(position));
+//              avatarImageView.setImageBitmap(list.get(position));
+
+         //   avatarImageView.setImageURI();
+
+
         }
 
         @Override

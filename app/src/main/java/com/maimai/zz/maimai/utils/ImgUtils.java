@@ -3,6 +3,7 @@ package com.maimai.zz.maimai.utils;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
@@ -98,7 +99,7 @@ public class ImgUtils {
         FileOutputStream out;
         try{
             out = new FileOutputStream(file);
-            if(bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out))
+            if(bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out))
             {
                 out.flush();
                 out.close();
@@ -117,7 +118,7 @@ public class ImgUtils {
     }
 
     public static String FilePath (){
-        String  si= Environment.getExternalStorageDirectory()+"/DCIM/images"+Math.random()+".jpeg";
+        String  si= Environment.getExternalStorageDirectory()+"/DCIM/images"+(int)Math.floor(Math.random()*100000000)+".jpeg";
         return si;
     }
 
@@ -126,7 +127,9 @@ public class ImgUtils {
         return bitmap;
     }
 
-
+    public static Uri toUri (String path){
+        return Uri.parse(path);
+    }
 
 
 

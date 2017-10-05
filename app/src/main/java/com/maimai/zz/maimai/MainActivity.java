@@ -188,8 +188,6 @@ public class MainActivity extends AppCompatActivity {
                     });
                     Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
 
-                }else if(SUCCESD_PICTURE==1 && SUCCESD_CODE==0){
-                    Toast.makeText(MainActivity.this,"请小主换一本，谢谢",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -240,11 +238,15 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void done(List<BookLibBomb> list, BmobException e) {
-                                if(e != null){
+                                if(e == null){
                                     SUCCESD_CODE =1;
+                                    if(list.get(0) == null){
+                                    }else {
+                                        SUCCESD_CODE =0;
+                                        Toast.makeText(MainActivity.this,"小Mai有此书了，谢谢你！",Toast.LENGTH_LONG).show();
+                                    }
                                 }else {
-                                    SUCCESD_CODE =0;
-                                    Toast.makeText(MainActivity.this,"小Mai有此书了，谢谢你！",Toast.LENGTH_LONG).show();
+
                                 }
                             }
 

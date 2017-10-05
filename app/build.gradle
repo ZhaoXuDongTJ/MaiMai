@@ -33,7 +33,7 @@ dependencies {
     compile 'cn.yipianfengye.android:zxing-library:2.2'
     //compile 'com.github.open-android:Zxing:v1.0.3'
     compile 'com.android.support:design:26.+'
-   // compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    // compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
     compile 'cn.bmob.android:http-legacy:1.0'
     //丽姐
@@ -42,7 +42,7 @@ dependencies {
     //   compile 'cn.bmob.android:bmob-sdk:3.5.0'
     // card
     compile 'me.yuqirong:cardswipelayout:1.0.0'
-
     testCompile 'junit:junit:4.12'
     compile files('libs/jsoup-1.9.2.jar')
+    compile files('libs/glide-3.6.0.jar')
 }
