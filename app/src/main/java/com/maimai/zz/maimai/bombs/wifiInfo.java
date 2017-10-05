@@ -14,15 +14,12 @@ public class wifiInfo extends BmobObject {
     public Integer getMember() {
         return member;
     }
-
     public void setMember(Integer member) {
         this.member = member;
     }
-
     public Integer getEnergy() {
         return energy;
     }
-
     public void setEnergy(Integer energy) {
         this.energy = energy;
     }
