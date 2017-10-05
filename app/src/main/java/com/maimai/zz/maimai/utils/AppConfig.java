@@ -12,6 +12,10 @@ public class AppConfig {
     public static String String_fahuo = " 待发货 : ";
     public static String String_shouhuo = "   待收货 : ";
     public static String String_gongxiang = "   贡献书本 : ";
+    public static String String_jieyue = "   节约书本 : ";
+
+
+
 
     public static String String_member = "公社成员";
     public static String String_energy = "公社能量";

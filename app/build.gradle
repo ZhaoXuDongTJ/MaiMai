@@ -45,4 +45,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/jsoup-1.9.2.jar')
     compile files('libs/glide-3.6.0.jar')
+
+    // wifi
+    compile 'com.github.pwittchen:reactivewifi:0.2.0'
 }
