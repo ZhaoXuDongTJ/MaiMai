@@ -51,8 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="43dp"
             android:layout_gravity="center"
-            android:background="#fff"
-            android:src="@drawable/scan_code" />
+            android:background="#fafafa"
+            android:src="@drawable/saomaz" />
 
     </LinearLayout>
 
