@@ -88,7 +88,7 @@
         android:layout_marginTop="33dp"
         android:layout_toEndOf="@+id/textView3"
         android:ems="15"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:hint="请输入您的校园网密码" />
 
     <TextView
