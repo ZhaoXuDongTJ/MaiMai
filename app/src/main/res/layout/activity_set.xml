@@ -98,7 +98,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="34dp"
         android:gravity="center"
-        android:text="Tip:我们不会以任何形式泄露您的个人信息\n获取您的wifi密码是为了实现交换流量的功能"
+        android:text="Tip:我们不会以任何形式泄露您的个人信息\n获取您的校园网密码是为了实现\n交换校园网流量的功能"
         android:textColor="#cccccc"/>
 
 

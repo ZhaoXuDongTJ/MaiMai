@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.maimai.zz.maimai.bombs.BookLibBomb;
 import com.maimai.zz.maimai.bombs.StudentInfo;
+import com.maimai.zz.maimai.bombs.wifiInfo;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -23,7 +24,6 @@ public class SetActivity extends AppCompatActivity {
     private String louhao;
     private String sushehao;
     public SharedPreferences pref;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
