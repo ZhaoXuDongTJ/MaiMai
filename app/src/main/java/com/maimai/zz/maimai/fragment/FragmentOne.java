@@ -83,7 +83,10 @@ public class FragmentOne extends Fragment implements BaseFragment,View.OnClickLi
         private int[] imgs = {
                // R.drawable.rollplayone,
                // R.drawable.rollplaytwo,
-                R.drawable.lunboshiyao1,
+                R.drawable.lunboshiyao5,
+             //   R.drawable.lunboshiyao2,
+               // R.drawable.lunboshiyao3,
+                R.drawable.lunboshiyao4,
         };
 
 

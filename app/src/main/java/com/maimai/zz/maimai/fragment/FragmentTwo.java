@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maimai.zz.maimai.R;
+import com.maimai.zz.maimai.SetActivity;
 import com.maimai.zz.maimai.WIFisActivity;
 import com.maimai.zz.maimai.bombs.BmobObjectID;
 import com.maimai.zz.maimai.bombs.StudentInfo;
@@ -111,6 +112,31 @@ public class FragmentTwo extends Fragment implements BaseFragment{
         ssidView = (TextView) view.findViewById(R.id.tbwifi);
 
 
+        BmobQuery<StudentInfo> stu = new BmobQuery<StudentInfo>();
+        stu.getObject(pref.getString("ObjectID", ""), new QueryListener<StudentInfo>() {
+            @Override
+            public void done(StudentInfo studentInfo, BmobException e) {
+                if(null == e){
+                    if(studentInfo.getMember()){
+                        isWifiMenber = true;
+                        BmobQuery<StudentInfo> query = new BmobQuery<StudentInfo>();
+                        query.addWhereEqualTo("isMember",true);
+                        query.findObjects(new FindListener<StudentInfo>() {
+                            @Override
+                            public void done(List<StudentInfo> list, BmobException e) {
+                                wifilistQuery  = (ArrayList<StudentInfo>) list;
+                                ico = list.size();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+
+
+
+
+
     }
 
     @Override
@@ -178,30 +204,32 @@ public class FragmentTwo extends Fragment implements BaseFragment{
                                     @Override
                                     public void done(StudentInfo studentInfo, BmobException e) {
                                         hasWifiPassword = studentInfo.getHasWiFIpassword();
+                                        if(hasWifiPassword){
+                                            StudentInfo studentInfo1 = new StudentInfo();
+                                            studentInfo1.setMember(true);
+                                            studentInfo1.update(pref.getString("ObjectID", ""), new UpdateListener() {
+                                                @Override
+                                                public void done(BmobException e) {
+                                                    Toast.makeText(getActivity(),"欢迎加入",Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                            wifiInfo wifiInfo = new wifiInfo();
+                                            wifiInfo.increment("member");
+                                            wifiInfo.increment("energy",2);
+                                            wifiInfo.update(BmobObjectID.WIFI_INFO, new UpdateListener() {
+                                                @Override
+                                                public void done(BmobException e) {
+
+                                                }
+                                            });
+
+                                        }else {
+                                            Toast.makeText(getActivity(),"请你先设置WIFI密码",Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(getActivity(), SetActivity.class));
+                                        }
                                     }
                                 });
-                                if(hasWifiPassword){
-                                    StudentInfo studentInfo1 = new StudentInfo();
-                                    studentInfo1.setMember(true);
-                                    studentInfo1.update(pref.getString("ObjectID", ""), new UpdateListener() {
-                                        @Override
-                                        public void done(BmobException e) {
 
-                                        }
-                                    });
-                                    wifiInfo wifiInfo = new wifiInfo();
-                                    wifiInfo.increment("member");
-                                    wifiInfo.increment("energy",2);
-                                    wifiInfo.update(BmobObjectID.WIFI_INFO, new UpdateListener() {
-                                        @Override
-                                        public void done(BmobException e) {
-
-                                        }
-                                    });
-                                }else {
-                                   Toast.makeText(getActivity(),"请你先设置WIFI密码",Toast.LENGTH_SHORT).show();
-                                    
-                                }
 
                             }
                         }
