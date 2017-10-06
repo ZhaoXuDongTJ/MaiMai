@@ -81,8 +81,9 @@ public class FragmentOne extends Fragment implements BaseFragment,View.OnClickLi
 
     private class MyRollPlayAdapter extends StaticPagerAdapter {
         private int[] imgs = {
-                R.drawable.rollplayone,
-                R.drawable.rollplaytwo,
+               // R.drawable.rollplayone,
+               // R.drawable.rollplaytwo,
+                R.drawable.lunboshiyao1,
         };
 
 

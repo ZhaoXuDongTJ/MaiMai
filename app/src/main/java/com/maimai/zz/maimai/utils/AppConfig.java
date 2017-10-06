@@ -7,7 +7,7 @@ package com.maimai.zz.maimai.utils;
  */
 
 public class AppConfig {
-    public static String versionMai = "1.0.0";
+    public static String versionMai = "0.0.1";
     public static String String_ModuleNumber = "    模板贡献 : ";
     public static String String_fahuo = " 待发货 : ";
     public static String String_shouhuo = "   待收货 : ";
