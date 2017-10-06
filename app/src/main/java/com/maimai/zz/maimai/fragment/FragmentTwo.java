@@ -91,6 +91,11 @@ public class FragmentTwo extends Fragment implements BaseFragment{
     }
 
 
+    public void synthis(){
+        
+
+
+    }
 
 
 
