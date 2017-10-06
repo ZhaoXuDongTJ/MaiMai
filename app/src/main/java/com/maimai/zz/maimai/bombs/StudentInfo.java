@@ -25,6 +25,8 @@ public class StudentInfo extends BmobObject {
     private Integer receiptGood;
     // 模板 贡献 数量
     private Integer mouldContribute;
+    // 时候 公社公成员
+    private Boolean isMember;
 
 
     public String getUserName() {
@@ -121,5 +123,13 @@ public class StudentInfo extends BmobObject {
 
     public void setMouldContribute(Integer mouldContribute) {
         this.mouldContribute = mouldContribute;
+    }
+
+    public Boolean getMember() {
+        return isMember;
+    }
+
+    public void setMember(Boolean member) {
+        isMember = member;
     }
 }

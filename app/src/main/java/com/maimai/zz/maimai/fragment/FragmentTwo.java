@@ -1,17 +1,18 @@
 package com.maimai.zz.maimai.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.maimai.zz.maimai.R;
-
-import rx.Subscription;
+import com.maimai.zz.maimai.WIFisActivity;
 
 /**
  * Created by 87784 on 2017/10/2.
@@ -21,11 +22,12 @@ public class FragmentTwo extends Fragment implements BaseFragment{
 
     private View view;
     private ImageView wifi;
-    private ListView access_points_f2;
+    private Button buttonWifi,button2;
 
+    public FloatingActionButton floatBtns;
     private boolean temp;
 
-    private Subscription wifiSubscription;
+
 
     @Nullable
     @Override
@@ -44,7 +46,9 @@ public class FragmentTwo extends Fragment implements BaseFragment{
     public void initView() {
 
         wifi = (ImageView)view.findViewById(R.id.wifiBlack);
-        access_points_f2 = (ListView) view.findViewById(R.id.access_points);
+        buttonWifi = (Button) view.findViewById(R.id.buttonWifi);
+        button2 = (Button) view.findViewById(R.id.button2);
+        floatBtns = (FloatingActionButton)view.findViewById(R.id.floatBtns);
     }
 
     @Override
@@ -62,6 +66,28 @@ public class FragmentTwo extends Fragment implements BaseFragment{
                 temp = !temp;
             }
         });
+
+        buttonWifi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), WIFisActivity.class));
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        floatBtns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
 

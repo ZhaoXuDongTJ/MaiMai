@@ -2,28 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="316dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.37">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center_horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="@string/join"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.96"
-                android:layout_marginTop="10dp"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/join"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/buttonWifi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="WIFI"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -60,22 +80,27 @@
                 android:text="@string/net_power" />
         </LinearLayout>
     </LinearLayout>
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp">
+
         <TableRow android:paddingTop="0dp">
+
             <TextView
-                android:text="@string/member"
-                android:layout_weight="1"
                 android:layout_marginLeft="60dp"
-                android:gravity="center"/>
-            <TextView
-                android:text="@string/energy"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/member" />
+
+            <TextView
                 android:layout_marginRight="60dp"
-                android:gravity="center"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/energy" />
         </TableRow>
+
         <TableRow android:paddingTop="40dp">
 
             <TextView
@@ -86,23 +111,20 @@
                 android:text="@string/contribute" />
 
             <TextView
-                android:text="@string/get"
-                android:layout_weight="1"
                 android:layout_marginRight="60dp"
-                android:gravity="center"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/get" />
         </TableRow>
     </TableLayout>
-    <LinearLayout
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatBtns"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin">
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="30dp"
+        android:src="@drawable/reset1" />
 
-
-        <ListView
-            android:id="@+id/access_points_f2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/access_points_label"
-            android:layout_alignParentStart="true" />
-    </LinearLayout>
 </LinearLayout>

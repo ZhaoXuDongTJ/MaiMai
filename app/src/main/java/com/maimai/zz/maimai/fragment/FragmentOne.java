@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
@@ -34,7 +35,6 @@ public class FragmentOne extends Fragment implements BaseFragment,View.OnClickLi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_one,container,false);
 
-
         initView();
         initListner();
 
@@ -51,37 +51,30 @@ public class FragmentOne extends Fragment implements BaseFragment,View.OnClickLi
 
     @Override
     public void initView() {
-
         rollPagerView = (RollPagerView)view.findViewById(R.id.rollPagerView);
-
         imgBntOne = (ImageButton) view.findViewById(R.id.imgBtnOne);
         imgBntTwo = (ImageButton) view.findViewById(R.id.imgBntTwo);
         imgBntThree = (ImageButton) view.findViewById(R.id.imgBntThree);
-
     }
 
     @Override
     public void initListner() {
-
         imgBntOne.setOnClickListener(this);
         imgBntTwo.setOnClickListener(this);
         imgBntThree.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imgBtnOne:
-
+                Toast.makeText(getActivity(),"点击划一划体验购物新模式",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.imgBntTwo:
-                // 点击 查看 专业书籍
-                startActivity(new Intent(getContext(),litepalTestActivity.class));
+                startActivity(new Intent(getContext(),litepalTestActivity.class));                               // 点击 查看 专业书籍
                 break;
             case R.id.imgBntThree:
                 startActivity(new Intent(getContext(),WIFisActivity.class));
-
                 break;
         }
     }

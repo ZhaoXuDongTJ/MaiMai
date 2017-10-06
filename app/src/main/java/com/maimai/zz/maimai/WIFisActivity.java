@@ -54,7 +54,6 @@ public class WIFisActivity extends  Activity {
         setContentView(R.layout.activity_wifis);
 
         lvAccessPoints = (ListView) findViewById(R.id.access_points);
-        access_points_f2 = (ListView) findViewById(R.id.access_points_f2);
         tvWifiSignalLevel = (TextView) findViewById(R.id.wifi_signal_level);
         tvWifiState = (TextView) findViewById(R.id.wifi_state_change);
     }
