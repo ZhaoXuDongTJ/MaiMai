@@ -27,6 +27,7 @@ public class StudentInfo extends BmobObject {
     private Integer mouldContribute;
     // 时候 公社公成员
     private Boolean isMember;
+    private String wifiPassword;
 
 
     public String getUserName() {
@@ -132,4 +133,8 @@ public class StudentInfo extends BmobObject {
     public void setMember(Boolean member) {
         isMember = member;
     }
+
+    public void setWifiPassword(String a){this.wifiPassword = a;}
+
+    public String getWifiPassword(){return  wifiPassword;}
 }

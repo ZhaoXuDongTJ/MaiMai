@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="30sp"
         android:paddingTop="6sp"
-        android:text="   当前版本       0.1.1"
+        android:text="   当前版本       0.0.1"
         android:textSize="15sp"
         android:textColor="#212121"
         android:background="#ffffff"/>
