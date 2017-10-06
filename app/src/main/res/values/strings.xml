@@ -52,8 +52,8 @@
     <string name="join">加入公社</string>
     <string name="isMember">您已是公社成员！</string>
     <string name="noMember">您不是公社成员！</string>
-    <string name="net_speed">WiFi State:</string>
-    <string name="net_power">WiFi signal level:</string>
+    <string name="net_speed">WiFi 状态:</string>
+    <string name="net_power">WiFi 强度:</string>
 
     <string name="save_book"> 节约书本</string>
     <string name="contribute_book"> 贡献书本</string>
@@ -63,6 +63,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--WIFI-->
+    <string name="waiting_for_wifi_signal_level">强度未确定&#8230;</string>
+    <string name="wifi_state">WiFi 状态:</string>
+    <string name="wifi_signal_level">WiFi 强度:</string>
+    <string name="available_access_points">本地WIFI列表:</string>
+
+    <string name="requesting_location_access">请求本地连接</string>
+    <string name="do_you_want_to_open_location_settings">你想打开位置设置启用位置服务？没有WiFi接入点不会被发现。</string>
 
 
 </resources>

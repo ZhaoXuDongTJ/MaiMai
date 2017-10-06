@@ -77,11 +77,14 @@
                 android:gravity="center"/>
         </TableRow>
         <TableRow android:paddingTop="40dp">
+
             <TextView
-                android:text="@string/contribute"
-                android:layout_weight="1"
+                android:id="@+id/textView3"
                 android:layout_marginLeft="60dp"
-                android:gravity="center"/>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/contribute" />
+
             <TextView
                 android:text="@string/get"
                 android:layout_weight="1"
@@ -96,7 +99,7 @@
 
 
         <ListView
-            android:id="@+id/access_points"
+            android:id="@+id/access_points_f2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/access_points_label"

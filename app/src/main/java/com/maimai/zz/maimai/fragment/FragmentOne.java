@@ -15,6 +15,7 @@ import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.maimai.zz.maimai.R;
+import com.maimai.zz.maimai.WIFisActivity;
 import com.maimai.zz.maimai.litepalTestActivity;
 
 /**
@@ -26,6 +27,7 @@ public class FragmentOne extends Fragment implements BaseFragment,View.OnClickLi
     private RollPagerView rollPagerView;
     private ImageButton imgBntOne,imgBntTwo,imgBntThree;
     private View view;
+
 
     @Nullable
     @Override
@@ -78,7 +80,8 @@ public class FragmentOne extends Fragment implements BaseFragment,View.OnClickLi
                 startActivity(new Intent(getContext(),litepalTestActivity.class));
                 break;
             case R.id.imgBntThree:
-                // 全站 书籍
+                startActivity(new Intent(getContext(),WIFisActivity.class));
+
                 break;
         }
     }

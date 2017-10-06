@@ -42,6 +42,7 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     public Button gongxiang;
     public Button send;
     public Button receiver;
+
     //
     public FreeDialog freeDialog;
     public FreeDialog freeDialog2;
@@ -54,6 +55,8 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
     private FloatingActionButton floatBtn;
     private FloatingActionButton ResetBtn;
     private Button contribute;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -7,8 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.maimai.zz.maimai.R;
+
+import rx.Subscription;
 
 /**
  * Created by 87784 on 2017/10/2.
@@ -18,9 +21,11 @@ public class FragmentTwo extends Fragment implements BaseFragment{
 
     private View view;
     private ImageView wifi;
+    private ListView access_points_f2;
 
     private boolean temp;
 
+    private Subscription wifiSubscription;
 
     @Nullable
     @Override
@@ -39,7 +44,7 @@ public class FragmentTwo extends Fragment implements BaseFragment{
     public void initView() {
 
         wifi = (ImageView)view.findViewById(R.id.wifiBlack);
-
+        access_points_f2 = (ListView) view.findViewById(R.id.access_points);
     }
 
     @Override
@@ -58,4 +63,9 @@ public class FragmentTwo extends Fragment implements BaseFragment{
             }
         });
     }
+
+
+
+
+
 }

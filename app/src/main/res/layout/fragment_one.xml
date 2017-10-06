@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:layout_margin="8dp"
             android:id="@+id/imgBntThree"
-            android:src="@drawable/imgbtnthree"
+            android:src="@drawable/wifitools"
             android:scaleType="centerInside"
             android:background="@null"/>
     </LinearLayout>
