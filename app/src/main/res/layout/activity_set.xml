@@ -39,7 +39,7 @@
         android:id="@+id/buttont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="107dp"
         android:textSize="23sp"
         android:text="提交"
         android:layout_below="@+id/editTexts"
@@ -50,7 +50,7 @@
         android:id="@+id/editTextl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:ems="15"
         android:inputType="number"
         android:hint="例如：29"
         android:layout_marginStart="27dp"
@@ -62,12 +62,44 @@
         android:id="@+id/editTexts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:ems="15"
         android:inputType="number"
         android:hint="例如：001"
         android:layout_below="@+id/editTextl"
         android:layout_alignStart="@+id/editTextl"
         android:layout_marginTop="34dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Wifi密码："
+        android:textSize="20sp"
+        android:layout_below="@+id/editTexts"
+        android:layout_alignStart="@+id/textViewss"
+        android:textColor="#212121"/>
+
+    <EditText
+        android:id="@+id/editTextwifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTexts"
+        android:layout_marginTop="33dp"
+        android:layout_toEndOf="@+id/textView3"
+        android:ems="15"
+        android:inputType="text"
+        android:hint="请输入您的校园网密码" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttont"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp"
+        android:gravity="center"
+        android:text="Tip:我们不会以任何形式泄露您的个人信息\n获取您的wifi密码是为了实现交换流量的功能"
+        android:textColor="#cccccc"/>
 
 
 </RelativeLayout>
