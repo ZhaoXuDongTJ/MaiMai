@@ -5,6 +5,6 @@ package com.maimai.zz.maimai.bombs;
  */
 
 public class BmobObjectID {
-    public static final String WIFI_INFO = "CXzF4448";
+    public static final String WIFI_INFO = "a6de52e67d";
     public static final String VerSionNumber = "Yysb000U";
 }

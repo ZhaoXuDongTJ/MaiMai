@@ -9,8 +9,6 @@ import cn.bmob.v3.BmobObject;
 public class wifiInfo extends BmobObject {
     private Integer member;
     private Integer energy;
-
-
     public Integer getMember() {
         return member;
     }

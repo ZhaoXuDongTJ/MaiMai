@@ -73,5 +73,4 @@
     <string name="requesting_location_access">请求本地连接</string>
     <string name="do_you_want_to_open_location_settings">你想打开位置设置启用位置服务？没有WiFi接入点不会被发现。</string>
 
-
 </resources>
