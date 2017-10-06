@@ -90,12 +90,11 @@ public class SearchActivity extends AppCompatActivity {
 
                                 }
                             });
+                        }else{
+                            Toast.makeText(SearchActivity.this,"还没有这本书呢！发布一套模板把！",Toast.LENGTH_LONG).show();
+                            finish();
                         }
                     }
-                }else{
-
-                    Toast.makeText(SearchActivity.this,"还没有这本书呢！发布一套模板把！",Toast.LENGTH_LONG).show();
-                    finish();
                 }
             }
         });
@@ -153,10 +152,10 @@ public class SearchActivity extends AppCompatActivity {
 
                                     }
                                 });
+                            }else {
+                                Toast.makeText(SearchActivity.this,"还没小伙伴提供！再等等！",Toast.LENGTH_SHORT).show();
                             }
 
-                        }else {
-                            Toast.makeText(SearchActivity.this,"还没小伙伴提供！再等等！",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

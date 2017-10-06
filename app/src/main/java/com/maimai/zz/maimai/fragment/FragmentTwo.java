@@ -1,6 +1,8 @@
 package com.maimai.zz.maimai.fragment;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -10,9 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.maimai.zz.maimai.R;
 import com.maimai.zz.maimai.WIFisActivity;
+import com.maimai.zz.maimai.bombs.BmobObjectID;
+import com.maimai.zz.maimai.bombs.StudentInfo;
+import com.maimai.zz.maimai.bombs.wifiInfo;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by 87784 on 2017/10/2.
@@ -23,11 +37,14 @@ public class FragmentTwo extends Fragment implements BaseFragment{
     private View view;
     private ImageView wifi;
     private Button buttonWifi,button2;
+    private TextView memberOfWifi;
 
     public FloatingActionButton floatBtns;
     private boolean temp;
 
-
+    // 共享 存储
+    public SharedPreferences.Editor editor;
+    public SharedPreferences pref;
 
     @Nullable
     @Override
@@ -49,6 +66,9 @@ public class FragmentTwo extends Fragment implements BaseFragment{
         buttonWifi = (Button) view.findViewById(R.id.buttonWifi);
         button2 = (Button) view.findViewById(R.id.button2);
         floatBtns = (FloatingActionButton)view.findViewById(R.id.floatBtns);
+        editor  = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE).edit();
+        pref = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE);
+        memberOfWifi = (TextView) view.findViewById(R.id.memberOfWifi);
     }
 
     @Override
@@ -77,7 +97,35 @@ public class FragmentTwo extends Fragment implements BaseFragment{
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BmobQuery<StudentInfo> stu = new BmobQuery<StudentInfo>();
+                stu.getObject(pref.getString("ObjectID", ""), new QueryListener<StudentInfo>() {
+                    @Override
+                    public void done(StudentInfo studentInfo, BmobException e) {
+                        if(null == e){
+                            if(studentInfo.getMember()){
+                                memberOfWifi.setText("请利用wifi好好学习！");
+                            }else {
+                                StudentInfo studentInfo1 = new StudentInfo();
+                                studentInfo1.setMember(true);
+                                studentInfo1.save(new SaveListener<String>() {
+                                    @Override
+                                    public void done(String s, BmobException e) {
 
+                                    }
+                                });
+                                wifiInfo wifiInfo = new wifiInfo();
+                                wifiInfo.increment("member");
+                                wifiInfo.increment("energy",2);
+                                wifiInfo.update(BmobObjectID.WIFI_INFO, new UpdateListener() {
+                                    @Override
+                                    public void done(BmobException e) {
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
             }
         });
 
@@ -92,7 +140,7 @@ public class FragmentTwo extends Fragment implements BaseFragment{
 
 
     public void synthis(){
-        
+
 
 
     }
