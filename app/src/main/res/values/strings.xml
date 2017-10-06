@@ -59,7 +59,7 @@
     <string name="contribute_book"> 贡献书本</string>
     <string name="send_object">待发货</string>
     <string name="receiver_object">&#160;&#160;待收货</string>
-    <string name="text_contribute">&#160;&#160;&#160;&#160;模板贡献</string>
+    <string name="text_contribute">&#160;&#160;&#160;&#160;书籍发布</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
