@@ -15,6 +15,11 @@ import java.util.List;
  */
 
 public class WifiAd {
+
+    public static final String SCHOOL_WIFI_SNAME = "TJUT-WiFiS";
+    public static final String SCHOOL_WIFI_TNAME = "TJUT-WiFiT";
+
+
     private static WifiAd wifiAdmin;
 
     private WifiManager mWifiManager = null;

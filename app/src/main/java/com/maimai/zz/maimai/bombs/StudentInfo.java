@@ -28,6 +28,7 @@ public class StudentInfo extends BmobObject {
     // 时候 公社公成员
     private Boolean isMember;
     private String wifiPassword;
+    private Boolean hasWiFIpassword;
 
 
     public String getUserName() {
@@ -137,4 +138,12 @@ public class StudentInfo extends BmobObject {
     public void setWifiPassword(String a){this.wifiPassword = a;}
 
     public String getWifiPassword(){return  wifiPassword;}
+
+    public Boolean getHasWiFIpassword() {
+        return hasWiFIpassword;
+    }
+
+    public void setHasWiFIpassword(Boolean hasWiFIpassword) {
+        this.hasWiFIpassword = hasWiFIpassword;
+    }
 }

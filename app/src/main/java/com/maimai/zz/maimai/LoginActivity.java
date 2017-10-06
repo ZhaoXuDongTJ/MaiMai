@@ -202,6 +202,7 @@ public class LoginActivity extends AppCompatActivity{
                                         studentInfo.setDeliverGood(0);
                                         studentInfo.setReceiptGood(0);
                                         studentInfo.setMember(false);
+                                        studentInfo.setHasWiFIpassword(false);
                                         studentInfo.save(new SaveListener<String>() {
                                             @Override
                                             public void done(String s, BmobException e) {
