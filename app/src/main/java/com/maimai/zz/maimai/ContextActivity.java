@@ -1,6 +1,8 @@
 package com.maimai.zz.maimai;
 
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -24,6 +26,7 @@ import com.maimai.zz.maimai.fragment.FragmentOne;
 import com.maimai.zz.maimai.fragment.FragmentThree;
 import com.maimai.zz.maimai.fragment.FragmentTwo;
 import com.maimai.zz.maimai.utils.AppConfig;
+import com.maimai.zz.maimai.utils.WifiAd;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
@@ -112,6 +115,9 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
         });
 
         CheckVersionNumber();
+
+        WifiAd.getWifiAdmin().setmContext(ContextActivity.this);
+        WifiAd.getWifiAdmin().getWifiMeathod();
 
     }
 

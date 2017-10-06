@@ -1,8 +1,11 @@
 package com.maimai.zz.maimai.fragment;
 
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +23,7 @@ import com.maimai.zz.maimai.WIFisActivity;
 import com.maimai.zz.maimai.bombs.BmobObjectID;
 import com.maimai.zz.maimai.bombs.StudentInfo;
 import com.maimai.zz.maimai.bombs.wifiInfo;
+import com.maimai.zz.maimai.utils.WifiAd;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
@@ -38,6 +43,7 @@ public class FragmentTwo extends Fragment implements BaseFragment{
     private ImageView wifi;
     private Button buttonWifi,button2;
     private TextView memberOfWifi;
+    private TextView ssidView;
 
     public FloatingActionButton floatBtns;
     private boolean temp;
@@ -45,6 +51,28 @@ public class FragmentTwo extends Fragment implements BaseFragment{
     // 共享 存储
     public SharedPreferences.Editor editor;
     public SharedPreferences pref;
+
+    //wifi
+//    private WifiManager mWifiManager = null;
+//    private WifiInfo mWifiInfo = null;
+//    Context mContext;
+//    public Context getmContext() {
+//        return mContext;
+//    }
+//    public void setmContext(Context mContext) {
+//        this.mContext = mContext;
+//    }
+//    public void getWifiMeathod() {
+//        mWifiManager = (WifiManager) mContext.getSystemService(mContext.WIFI_SERVICE);
+//
+//        mWifiInfo = mWifiManager.getConnectionInfo();
+//    }
+//    public String GetSSID() {
+//        return (mWifiInfo == null) ? "NULL" : mWifiInfo.getSSID();
+//    }
+//
+//
+
 
     @Nullable
     @Override
@@ -55,7 +83,7 @@ public class FragmentTwo extends Fragment implements BaseFragment{
 
         initView();
         initListner();
-
+        ssidView.setText(WifiAd.getWifiAdmin().GetSSID());
         return view;
     }
 
@@ -69,6 +97,7 @@ public class FragmentTwo extends Fragment implements BaseFragment{
         editor  = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE).edit();
         pref = new ContextWrapper(getContext()).getSharedPreferences("data",MODE_PRIVATE);
         memberOfWifi = (TextView) view.findViewById(R.id.memberOfWifi);
+        ssidView = (TextView) view.findViewById(R.id.tbwifi);
     }
 
     @Override
@@ -138,13 +167,11 @@ public class FragmentTwo extends Fragment implements BaseFragment{
 
     }
 
-
     public void synthis(){
 
 
 
     }
-
 
 
 }
