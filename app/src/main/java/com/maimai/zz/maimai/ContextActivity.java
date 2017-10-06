@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.maimai.zz.maimai.bombs.BmobObjectID;
+import com.maimai.zz.maimai.bombs.BookLibBomb;
 import com.maimai.zz.maimai.bombs.VersionNumber;
 import com.maimai.zz.maimai.fragment.FragmentOne;
 import com.maimai.zz.maimai.fragment.FragmentThree;
@@ -27,8 +28,11 @@ import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
+import java.util.List;
+
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
 
 public class ContextActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -209,35 +213,27 @@ public class ContextActivity extends AppCompatActivity implements NavigationView
                         return;
                     }
                     if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
-                        String result = bundle.getString(CodeUtils.RESULT_STRING);
-                      //  Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                        final String result = bundle.getString(CodeUtils.RESULT_STRING);
                         //这里的values就是我们要传的值;
-                        Intent intent = new Intent();
-                        intent.putExtra("Scan", result);
-                        intent.setClass(ContextActivity.this, SearchActivity.class);
-                        final Intent intent1 = intent;
-                        startActivity(intent1);
-
-
-//                        //  验证 程序
-//                        BmobQuery<BookLibBomb> bmobQuery  = new BmobQuery<BookLibBomb>();
-//                        bmobQuery.addWhereEqualTo("ScanCode",result);
-//                        bmobQuery.setLimit(1);
-//                        bmobQuery.findObjects(new FindListener<BookLibBomb>() {
-//
-//                            @Override
-//                            public void done(List<BookLibBomb> list, BmobException e) {
-//                                if(list.get(0) == null){
-//                                    //Toast.makeText(ContextActivity.this,"小Mai没有此书，请你提供一下呗！",Toast.LENGTH_LONG).show();
-//                                }else {
-//
-//                                }
-//                            }
-//
-//                        });
-
-
-
+                        BmobQuery<BookLibBomb> bmobQuery  = new BmobQuery<BookLibBomb>();
+                        bmobQuery.addWhereEqualTo("ScanCode",result);
+                        bmobQuery.setLimit(1);
+                        bmobQuery.findObjects(new FindListener<BookLibBomb>() {
+                            @Override
+                            public void done(List<BookLibBomb> list, BmobException e) {
+                                if(e==null){
+                                    if(list.get(0)==null){
+                                        Toast.makeText(ContextActivity.this,"还没有这本书呢！发布一套模板把！",Toast.LENGTH_LONG).show();
+                                    }else {
+                                        Intent intent = new Intent();
+                                        intent.putExtra("Scan", result);
+                                        intent.setClass(ContextActivity.this, SearchActivity.class);
+                                        final Intent intent1 = intent;
+                                        startActivity(intent1);
+                                    }
+                                }
+                            }
+                        });
                     } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                         Toast.makeText(ContextActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
                     }
