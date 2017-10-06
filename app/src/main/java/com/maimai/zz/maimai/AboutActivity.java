@@ -31,13 +31,7 @@ public class AboutActivity extends AppCompatActivity {
                     public void done(VersionNumber versionNumber, BmobException e) {
                         if(e==null){
                             String number = versionNumber.getVersionNumber();
-                            if(number != AppConfig.versionMai){
-                                Toast.makeText(AboutActivity.this,"服务器版本：" + number+" \n "+"本地版本："+AppConfig.versionMai+"\n"+ "请到官网下载最新版本" ,Toast.LENGTH_SHORT).show();
-
-                            }else {
-                                Toast.makeText(AboutActivity.this,"已是最新版本",Toast.LENGTH_SHORT).show();
-
-                            }
+                                Toast.makeText(AboutActivity.this,"服务器版本：" + number+" \n "+"本地版本："+AppConfig.versionMai ,Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(AboutActivity.this,"查询失败：" + e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
