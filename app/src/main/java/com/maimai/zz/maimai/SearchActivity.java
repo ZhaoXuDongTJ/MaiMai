@@ -63,13 +63,8 @@ public class SearchActivity extends AppCompatActivity {
         bmobQuery.findObjects(new FindListener<BookLibBomb>() {
             @Override
             public void done(List<BookLibBomb> list, BmobException e) {
-
                 if(e==null){
-
-
-
                     for (BookLibBomb gameScore : list) {
-
                         //  找到 图片 开始 下载这个图片 保存到本地
                         ObjectID = gameScore.getObjectId();
                         BmobFile bmobfile = gameScore.getCover();
@@ -81,9 +76,9 @@ public class SearchActivity extends AppCompatActivity {
                                 @Override
                                 public void done(String s, BmobException e) {
                                     if(e==null){
-                       //                 Toast.makeText(SearchActivity.this,"下载成功,保存路径:"+s,Toast.LENGTH_SHORT).show();
-                                        Bitmap bitmap = ImgUtils.parseBitMap(filePath);    // 得到 bitmap  对象
-                                        imageView.setImageBitmap(bitmap);   //  设置 imageview的图片显示  就是 转化一下
+                                         // Toast.makeText(SearchActivity.this,"下载成功,保存路径:"+s,Toast.LENGTH_SHORT).show();
+                                        Bitmap bitmap = ImgUtils.parseBitMap(filePath);                                // 得到 bitmap  对象
+                                        imageView.setImageBitmap(bitmap);                                             //  设置 imageview的图片显示  就是 转化一下
                                     }else{
                                         Toast.makeText(SearchActivity.this,"下载失败："+e.getErrorCode()+","+e.getMessage(),Toast.LENGTH_SHORT).show();
                                     }

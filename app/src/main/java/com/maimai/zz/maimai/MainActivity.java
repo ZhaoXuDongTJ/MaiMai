@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public static int SUCCESD_PICTURE = 0;
     public static int SUCCESD_CODE = 0;
     //sqlite
-    private SqlUserBookContribution dbHelper;
+   // private SqlUserBookContribution dbHelper;
     // 存储 lipepal
     private Bitmap liteImageOfBook;
     private String liteScanNodeBook;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         imageOfBook = (ImageView) findViewById(R.id.imageOfBook);
         edit_scan = (EditText) findViewById(R.id.edit_scan);
         //
-        dbHelper = new SqlUserBookContribution(this,"UserBookContribution.db",null,1);
+
 
         //拍照
         openCamera.setOnClickListener(new View.OnClickListener(){

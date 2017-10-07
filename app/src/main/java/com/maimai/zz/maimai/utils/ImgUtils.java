@@ -99,34 +99,26 @@ public class ImgUtils {
         FileOutputStream out;
         try{
             out = new FileOutputStream(file);
-            if(bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out))
-            {
+            if(bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out)) {
                 out.flush();
                 out.close();
             }
-        }
-        catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         return filepath;
     }
-
     public static String FilePath (){
         String  si= Environment.getExternalStorageDirectory()+"/DCIM/images"+(int)Math.floor(Math.random()*100000000)+".jpeg";
         return si;
     }
-
     public static Bitmap parseBitMap(String filepath){
         Bitmap bitmap=BitmapFactory.decodeFile(filepath);
         return bitmap;
     }
-
     public static Uri toUri (String path){
         return Uri.parse(path);
     }
