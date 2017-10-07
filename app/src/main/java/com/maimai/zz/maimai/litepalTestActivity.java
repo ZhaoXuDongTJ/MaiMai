@@ -82,7 +82,7 @@ public class litepalTestActivity extends AppCompatActivity {
                 myHolder.dislikeImageView.setAlpha(0f);
                 myHolder.likeImageView.setAlpha(0f);
                 // 修改 名字  更新
-                Toast.makeText(litepalTestActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(litepalTestActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
 
                 ///   购买 此书  修改 数据库
                 if(! (direction == CardConfig.SWIPED_LEFT)){

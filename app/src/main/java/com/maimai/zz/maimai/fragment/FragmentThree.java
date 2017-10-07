@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.maimai.zz.maimai.MainActivity;
 import com.maimai.zz.maimai.R;
@@ -186,7 +185,7 @@ public class FragmentThree extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(getActivity(),"float",Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getActivity(),"float",Toast.LENGTH_SHORT).show();
 
         editor.clear();
         editor.apply();

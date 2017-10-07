@@ -156,13 +156,13 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void done(String s, BmobException e) {
                                         if(e==null){
-                                            Toast.makeText(MainActivity.this,"创建数据成功：" + s,Toast.LENGTH_SHORT).show();
+                               //             Toast.makeText(MainActivity.this,"创建数据成功：" + s,Toast.LENGTH_SHORT).show();
 
                                             // 添加贡献值
                                             StudentInfo studentInfo = new StudentInfo();
                                             studentInfo.increment("mouldContribute");
 
-                                            Toast.makeText(MainActivity.this,"ObjectID"+pref.getString("ObjectID",""),Toast.LENGTH_SHORT).show();
+                              //              Toast.makeText(MainActivity.this,"ObjectID"+pref.getString("ObjectID",""),Toast.LENGTH_SHORT).show();
 
                                             studentInfo.update(pref.getString("ObjectID",""),new UpdateListener() {
                                                 @Override
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     realFilePathUtil = ImgUtils.saveBitmap(bitmap);
-                    Toast.makeText(MainActivity.this,"创建地址成功：" + realFilePathUtil,Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(MainActivity.this,"创建地址成功：" + realFilePathUtil,Toast.LENGTH_SHORT).show();
                     Log.i("bmob","创建地址成功："+realFilePathUtil+"");
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -66,32 +66,41 @@ public class FragmentTwo extends Fragment implements BaseFragment{
     public boolean isWifiMenber = false;
     public Boolean hasWifiPassword = false;
     //
+    public String SCHOOL_WIFI = "\"TJUT-WiFiS\"";
+    public boolean isWIFIState = false;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_two,container,false);
 
-        BmobQuery<wifiInfo> query = new BmobQuery<wifiInfo>();
-        query.getObject(BmobObjectID.WIFI_INFO, new QueryListener<wifiInfo>() {
-
-            @Override
-            public void done(wifiInfo object, BmobException e) {
-                if(e==null){
-                    num=object.getMember();
-                    energy=object.getEnergy();
-                }else{
-                    Log.i("bmob","shibai"+e.getMessage()+","+e.getErrorCode());
-                }
-            }
-
-        });
+//        BmobQuery<wifiInfo> query = new BmobQuery<wifiInfo>();
+//        query.getObject(BmobObjectID.WIFI_INFO, new QueryListener<wifiInfo>() {
+//
+//            @Override
+//            public void done(wifiInfo object, BmobException e) {
+//                if(e==null){
+//                    num=object.getMember();
+//                    energy=object.getEnergy();
+//                }else{
+//                    Log.i("bmob","shibai"+e.getMessage()+","+e.getErrorCode());
+//                }
+//            }
+//
+//        });
         temp = true;
 
         initView();
         initListner();
+
+
         nowWifi = WifiAd.getWifiAdmin().GetSSID();
         ssidView.setText("您目前WIFI连接是 : "+nowWifi);
+
+        checkWifiName(nowWifi);
+
+
         return view;
     }
 
@@ -148,7 +157,7 @@ public class FragmentTwo extends Fragment implements BaseFragment{
                 if (temp){
                     wifi.setImageResource(R.drawable.wifi_blue);
                     // 显示 密码
-                    if(isWifiMenber){
+                    if(isWifiMenber&&isWIFIState){
                         wifi_username.setText("wifi:"+wifilistQuery.get(is).getStudentID());
                         wifi_password.setText("wifi:"+wifilistQuery.get(is).getWifiPassword());
                         is++;
@@ -157,7 +166,7 @@ public class FragmentTwo extends Fragment implements BaseFragment{
                         }
                     }else {
                         wifi.setImageResource(R.drawable.wifi_black);
-                       Toast.makeText(getActivity(),"请加入公社，并在设置中设置密码",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"请加入公社或在TJUT-WiFiS下开启",Toast.LENGTH_LONG).show();
                     }
 
                 }else {
@@ -241,8 +250,31 @@ public class FragmentTwo extends Fragment implements BaseFragment{
         floatBtns.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BmobQuery<wifiInfo> query = new BmobQuery<wifiInfo>();
+                query.getObject(BmobObjectID.WIFI_INFO, new QueryListener<wifiInfo>() {
+
+                    @Override
+                    public void done(wifiInfo object, BmobException e) {
+                        if(e==null){
+                            num=object.getMember();
+                            energy=object.getEnergy();
+                        }else{
+                            Log.i("bmob","shibai"+e.getMessage()+","+e.getErrorCode());
+                        }
+                    }
+
+                });
+
                 textnumber.setText("公社成员:"+num);
                 textenergy.setText("公社能量:"+energy);
+
+               // getActivity().onBackPressed();
+                nowWifi =null;
+                nowWifi = WifiAd.getWifiAdmin().GetSSID();
+                ssidView.setText("您目前WIFI连接是 : "+nowWifi);
+
+                checkWifiName(nowWifi);
+
             }
         });
 
@@ -253,13 +285,12 @@ public class FragmentTwo extends Fragment implements BaseFragment{
     }
 
     public void checkWifiName(String nowWifi){
-        if(nowWifi.equals(WifiAd.SCHOOL_WIFI_SNAME)){
+        if(nowWifi.equals(SCHOOL_WIFI)){
             Toast.makeText(getActivity(),"可以使用使用Wifi",Toast.LENGTH_SHORT).show();
+            isWIFIState = true;
         }else {
             Toast.makeText(getActivity(),"请连接TJUT-WiFiS然后点击上面wifi图标",Toast.LENGTH_SHORT).show();
         }
     }
-
-
 
 }

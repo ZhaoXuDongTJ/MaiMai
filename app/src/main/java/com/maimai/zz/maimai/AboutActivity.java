@@ -33,7 +33,7 @@ public class AboutActivity extends AppCompatActivity {
                             String number = versionNumber.getVersionNumber();
                                 Toast.makeText(AboutActivity.this,"服务器版本：" + number+" \n "+"本地版本："+AppConfig.versionMai ,Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(AboutActivity.this,"查询失败：" + e.getMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AboutActivity.this,"查询失败：",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
