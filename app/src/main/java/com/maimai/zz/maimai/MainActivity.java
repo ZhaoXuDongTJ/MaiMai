@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
     // 上传云端 确认码
     public static int SUCCESD_PICTURE = 0;
     public static int SUCCESD_CODE = 0;
-    //sqlite
-   // private SqlUserBookContribution dbHelper;
+
+
     // 存储 lipepal
     private Bitmap liteImageOfBook;
     private String liteScanNodeBook;

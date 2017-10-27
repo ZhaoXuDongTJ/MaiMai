@@ -28,10 +28,6 @@ public class ImgUtils {
         this.pref = pref;
     }
 
-
-
-
-
     //  图片 转化 字节
     public static byte[] toByte(Bitmap bitmap){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
